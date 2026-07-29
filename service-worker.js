@@ -14,7 +14,7 @@
  * ເພື່ອບັງຄັບໃຫ້ browser ດາວໂຫຼດ Service Worker ໃໝ່ ແລະ ລ້າງ cache ເກົ່າອັດຕະໂນມັດ (Cache Cleanup)
  */
 
-const SW_VERSION = "v4";
+const SW_VERSION = "v5";
 const SHELL_CACHE = `lak90-treasury-shell-${SW_VERSION}`;
 const RUNTIME_CACHE = `lak90-treasury-runtime-${SW_VERSION}`;
 const CURRENT_CACHES = [SHELL_CACHE, RUNTIME_CACHE];
@@ -159,7 +159,7 @@ async function cacheFirstShell(req) {
 async function staleWhileRevalidate(req, cacheName) {
   const cache = await caches.open(cacheName);
   const cached = await cache.match(req);
-  const networkFetch = fetch(req, { mode: req.mode === "navigate" ? "same-origin" : "cors" })
+  const networkFetch = fetch(req)
     .then((response) => {
       if (response && (response.ok || response.type === "opaque")) {
         cache.put(req, response.clone());
