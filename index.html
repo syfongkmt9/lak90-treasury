@@ -24,7 +24,24 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
   <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
+ <script>
+(function(){
+  var srcs = [
+    "https://cdn.jsdelivr.net/npm/tailwindcss-cdn@3.4.10/tailwindcss.js",
+    "https://unpkg.com/tailwindcss-cdn@3.4.10/tailwindcss.js",
+    "https://registry.npmmirror.com/tailwindcss-cdn/3.4.10/files/tailwindcss.js",
+    "https://cdn.tailwindcss.com"
+  ];
+  function tryLoad(i){
+    if (i >= srcs.length) return;
+    var s = document.createElement('script');
+    s.src = srcs[i];
+    s.onerror = function(){ tryLoad(i + 1); };
+    document.head.appendChild(s);
+  }
+  tryLoad(0);
+})();
+</script>
   
   <!-- Google Fonts - Noto Sans Lao -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
