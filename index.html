@@ -24,24 +24,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
   <!-- Tailwind CSS CDN -->
- <script>
-(function(){
-  var srcs = [
-    "https://cdn.jsdelivr.net/npm/tailwindcss-cdn@3.4.10/tailwindcss.js",
-    "https://unpkg.com/tailwindcss-cdn@3.4.10/tailwindcss.js",
-    "https://registry.npmmirror.com/tailwindcss-cdn/3.4.10/files/tailwindcss.js",
-    "https://cdn.tailwindcss.com"
-  ];
-  function tryLoad(i){
-    if (i >= srcs.length) return;
-    var s = document.createElement('script');
-    s.src = srcs[i];
-    s.onerror = function(){ tryLoad(i + 1); };
-    document.head.appendChild(s);
-  }
-  tryLoad(0);
-})();
-</script>
+  <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- Google Fonts - Noto Sans Lao -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2191,9 +2174,9 @@
 
         // ໃຊ້ icon ຈິງທີ່ deploy ນຳ Firebase Hosting ແທນ icon ຊົ່ວຄາວຈາກ CDN ພາຍນອກ
         const appleTouchIcon = document.querySelector('link[rel="apple-touch-icon"]');
-        if (appleTouchIcon) appleTouchIcon.setAttribute('href', 'icons/icon-192.png');
+        if (appleTouchIcon) appleTouchIcon.setAttribute('href', 'icon-192.png');
         const faviconIcon = document.querySelector('link[rel="icon"]');
-        if (faviconIcon) faviconIcon.setAttribute('href', 'icons/icon-192.png');
+        if (faviconIcon) faviconIcon.setAttribute('href', 'icon-192.png');
 
         if ('serviceWorker' in navigator) {
           window.addEventListener('load', () => {
