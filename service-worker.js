@@ -14,7 +14,7 @@
  * ເພື່ອບັງຄັບໃຫ້ browser ດາວໂຫຼດ Service Worker ໃໝ່ ແລະ ລ້າງ cache ເກົ່າອັດຕະໂນມັດ (Cache Cleanup)
  */
 
-const SW_VERSION = "v3";
+const SW_VERSION = "v4";
 const SHELL_CACHE = `lak90-treasury-shell-${SW_VERSION}`;
 const RUNTIME_CACHE = `lak90-treasury-runtime-${SW_VERSION}`;
 const CURRENT_CACHES = [SHELL_CACHE, RUNTIME_CACHE];
@@ -24,8 +24,8 @@ const APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.json",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png"
+  "./icon-192.png",
+  "./icon-512.png"
 ];
 
 // Third-party CDN assets ທີ່ index.html ໂຫຼດ - cache ໄວ້ລ່ວງໜ້າໃຫ້ໃຊ້ offline ໄດ້ນຳ
@@ -84,6 +84,12 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(req.url);
 
+  // 0) ໜ້າ HTML ຫຼັກ -> Network First ສະເໝີ (ເຫັນການແກ້ໄຂໃໝ່ທັນທີ ບໍ່ຕ້ອງລ້າງ cache)
+  if (req.mode === "navigate") {
+    event.respondWith(networkFirstShell(req));
+    return;
+  }
+
   // 1) Google Apps Script API -> Network First (ຕ້ອງການຂໍ້ມູນສົດສະເໝີ)
   const isApiCall =
     url.hostname.includes("script.google.com") ||
@@ -114,6 +120,22 @@ async function networkFirstApi(req) {
       JSON.stringify({ success: false, message: "ບໍ່ມີການເຊື່ອມຕໍ່ອິນເຕີເນັດ - ກະລຸນາລອງໃໝ່ອີກຄັ້ງ" }),
       { headers: { "Content-Type": "application/json" } }
     );
+  }
+}
+
+// Network First: ໃຊ້ສຳລັບໜ້າ HTML ຫຼັກ - ຫາເນັດກ່ອນສະເໝີ ເພື່ອໃຫ້ເຫັນການແກ້ໄຂໃໝ່ທັນທີ,
+// fallback ໄປຫາ cache ຖ້າບໍ່ມີເນັດ
+async function networkFirstShell(req) {
+  try {
+    const response = await fetch(req);
+    if (response && response.status === 200) {
+      const clone = response.clone();
+      caches.open(SHELL_CACHE).then((cache) => cache.put(req, clone));
+    }
+    return response;
+  } catch (err) {
+    const cached = await caches.match(req);
+    return cached || caches.match("./index.html");
   }
 }
 
