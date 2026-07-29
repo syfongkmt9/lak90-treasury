@@ -1,0 +1,2215 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ລະບົບບັນຊີຄັງເງິນໂຮງຮຽນ ມຕ ຫຼັກ90</title>
+  
+  <!-- PWA: Dual-Mode Support -->
+  <!-- ໂໝດ 1 (Apps Script Web App): ໜ້ານີ້ຖືກເປີດຢູ່ໃນ sandboxed iframe ຂອງ Google - Service Worker ແທ້ -->
+  <!--   ລົງທະບຽນບໍ່ໄດ້ ດັ່ງນັ້ນໃຊ້ manifest ແບບ data-URI + "Add to Home Screen" ຊື່ອທາງລັດແທນ (ຄືເກົ່າ). -->
+  <!-- ໂໝດ 2 (Firebase Hosting): ເມື່ອ index.html/manifest.json/service-worker.js ຖືກ deploy ຢູ່ Firebase -->
+  <!--   Hosting (ບໍ່ຢູ່ໃນ iframe), ສະຄຣິບຢູ່ທ້າຍໜ້າ (ຫາ #pwa-bootstrap) ຈະສະຫຼັບ href ຂອງ manifest ໄປ -->
+  <!--   ໃຊ້ໄຟລ໌ manifest.json ແທ້, ແລະລົງທະບຽນ service-worker.js ໂດຍອັດຕະໂນມັດ. ເບິ່ງ PWA_DEPLOY_GUIDE.md -->
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ຄັງເງິນ ມຕ90">
+  <meta name="description" content="ລະບົບບັນຊີຄັງເງິນໂຮງຮຽນ ມຕ ຫຼັກ90" />
+  <link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIuC6peC6sOC6muC6u+C6muC6muC6seC6meC6iuC6teC6hOC6seC6h+C7gOC6h+C6tOC6meC7guC6ruC6h+C6ruC6veC6mSDguqHgupUg4Lqr4Lq84Lqx4LqBOTAiLAogICJzaG9ydF9uYW1lIjogIuC6hOC6seC6h+C7gOC6h+C6tOC6mSDguqHgupU5MCIsCiAgImRlc2NyaXB0aW9uIjogIuC6peC6sOC6muC6u+C6muC6muC6seC6meC6iuC6teC6hOC6seC6h+C7gOC6h+C6tOC6meC7guC6ruC6h+C6ruC6veC6mSDguqHgupUg4Lqr4Lq84Lqx4LqBOTAgLSDguprgurHgupngupfgurbguoEg4Lql4Lqy4LqN4Lqu4Lqx4LqaLeC6peC6suC6jeC6iOC7iOC6suC6jSwg4Lqt4Lqw4LqZ4Lq44Lqh4Lqx4LqULCDgu4HguqXgurAg4Lqt4Lqt4LqB4Lql4Lqy4LqN4LqH4Lqy4LqZLiAo4LuD4LqK4LuJICfgu4Dgup7gurXgu4jguqHgu4Pguqrgu4jgu5zgu4ngurLguojgu43guqvgurzgurHguoEnIOC7gOC6m+C6seC6meC6l+C6suC6h+C6peC6seC6lCAtIOC6muC7jeC7iOC7geC6oeC7iOC6meC7geC6reC6seC6muC6leC6tOC6lOC6leC6seC7ieC6h+C7geC6muC6miBvZmZsaW5lKSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAic2NvcGUiOiAiLiIsCiAgImRpc3BsYXkiOiAiYnJvd3NlciIsCiAgIm9yaWVudGF0aW9uIjogInBvcnRyYWl0LXByaW1hcnkiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNmZmZmZmYiLAogICJ0aGVtZV9jb2xvciI6ICIjMjU2M2ViIiwKICAibGFuZyI6ICJsbyIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzI5OTcvMjk5NzI5NS5wbmciLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJwdXJwb3NlIjogImFueSIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiaHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS81MTIvMjk5Ny8yOTk3Mjk1LnBuZyIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwKICAgICAgInB1cnBvc2UiOiAiYW55IgogICAgfQogIF0KfQo=" id="manifest-placeholder" />
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2997/2997295.png">
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2997/2997295.png">
+
+  <!-- SheetJS - ໃຊ້ສ້າງໄຟລ໌ .xlsx (Export ໃນໜ້າ Reports) ຝັ່ງ browser ໂດຍກົງ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts - Noto Sans Lao -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <style>
+    * {
+      font-family: 'Noto Sans Lao', sans-serif;
+    }
+
+    /* Dynamic Color Themes */
+    .theme-blue {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --primary-ring: rgba(37, 99, 235, 0.3);
+    }
+    .theme-green {
+      --primary: #059669;
+      --primary-hover: #047857;
+      --primary-light: #ecfdf5;
+      --primary-ring: rgba(5, 150, 105, 0.3);
+    }
+    .theme-purple {
+      --primary: #7c3aed;
+      --primary-hover: #6d28d9;
+      --primary-light: #f5f3ff;
+      --primary-ring: rgba(124, 58, 237, 0.3);
+    }
+    .theme-orange {
+      --primary: #ea580c;
+      --primary-hover: #c2410c;
+      --primary-light: #fff7ed;
+      --primary-ring: rgba(234, 88, 12, 0.3);
+    }
+
+    .bg-theme-primary { background-color: var(--primary) !important; }
+    .bg-theme-hover:hover { background-color: var(--primary-hover) !important; }
+    .bg-theme-light { background-color: var(--primary-light) !important; }
+    .text-theme-primary { color: var(--primary) !important; }
+    .border-theme-primary { border-color: var(--primary) !important; }
+    .ring-theme-primary:focus { --tw-ring-color: var(--primary-ring) !important; }
+
+    /* Print Rules for A4 PDF */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printable-report, #printable-report * {
+        visibility: visible;
+      }
+      #printable-report {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 10mm;
+        background: white;
+        color: black;
+      }
+      .no-print {
+        display: none !important;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 10mm;
+      }
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+    /* Toast Notification Transition */
+    .toast-enter-active, .toast-leave-active { transition: all 0.25s ease; }
+    .toast-enter-from { opacity: 0; transform: translateY(10px); }
+    .toast-leave-to { opacity: 0; transform: translateX(20px); }
+
+    /* Signature Pad Canvas */
+    .signature-canvas {
+      touch-action: none;      /* ຫ້າມ browser scroll/zoom ຂະນະລາກນິ້ວເຊັນ (ຈຳເປັນສຳລັບ Android/iPhone) */
+      -ms-touch-action: none;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none; /* ກັນ iOS ສະແດງເມນູ copy/save ຄ້າງນິ້ວ */
+      background: #fff;
+      cursor: crosshair;
+      display: block;
+    }
+
+    /* ເອກະສານລາຊະການ: ຕາຕະລາງລາຍງານໃຊ້ພຽງເສັ້ນຂອບແນວນອນ (ບໍ່ມີເສັ້ນຂອບແນວຕັ້ງທີ່ບໍ່ຈຳເປັນ) */
+    .official-doc-table {
+      border-collapse: collapse;
+    }
+    .official-doc-table th,
+    .official-doc-table td {
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-bottom: 1px solid #94a3b8;
+    }
+    .official-doc-table thead tr {
+      border-bottom: 1.5px solid #1e293b;
+    }
+    .official-doc-table tbody tr:last-child td {
+      border-bottom: 1.5px solid #1e293b;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col theme-blue" id="app-container">
+
+  <div id="app" class="flex-1 flex flex-col">
+
+    <!-- INITIAL LOADING SCREEN -->
+    <div v-if="!appReady" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white">
+      <i class="fa-solid fa-spinner fa-spin text-3xl text-theme-primary mb-3"></i>
+      <p class="text-xs text-slate-500 font-medium">ກຳລັງໂຫຼດຂໍ້ມູນຈາກ Google Sheet...</p>
+    </div>
+
+    <!-- BACKGROUND SYNC INDICATOR (ບໍ່ບັງໜ້າຈໍ, ບໍ່ກະຕຸກ) -->
+    <div v-if="appReady && isSyncing" class="fixed top-2 right-2 z-[90] bg-slate-800/80 text-white text-[10px] px-2.5 py-1 rounded-full flex items-center space-x-1 no-print">
+      <i class="fa-solid fa-arrows-rotate fa-spin"></i>
+      <span>ກຳລັງຊິງຄ໌ຂໍ້ມູນ...</span>
+    </div>
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm no-print">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          
+          <div class="flex items-center space-x-3">
+            <img :src="settings.logo_url || 'https://cdn-icons-png.flaticon.com/512/2997/2997295.png'" 
+                 alt="School Logo" 
+                 class="w-10 h-10 object-contain rounded-full bg-slate-100 p-1 border border-slate-200"
+                 @error="handleLogoError" />
+            <div>
+              <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">{{ settings.school_name || 'ໂຮງຮຽນ ມຕ ຫຼັກ90' }}</h1>
+              <p class="text-[11px] text-slate-500 font-medium">ລະບົບບັນຊີຄັງເງິນ (School Treasury System)</p>
+            </div>
+          </div>
+
+          <div v-if="currentUser" class="flex items-center space-x-2">
+            <button v-if="canInstallPWA" @click="installPWA" title="ຕິດຕັ້ງແອັບ" class="p-2 text-theme-primary hover:bg-theme-light rounded-lg transition no-print">
+              <i class="fa-solid fa-download text-base"></i>
+            </button>
+
+            <div class="hidden sm:flex flex-col items-end mr-2">
+              <span class="text-xs font-semibold text-slate-800">{{ currentUser.fullname }}</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full font-medium" :class="getRoleBadgeClass(currentUser.role)">
+                {{ getRoleLabel(currentUser.role) }}
+              </span>
+            </div>
+
+            <button @click="showChangePasswordModal = true" title="ປ່ຽນລະຫັດຜ່ານ" class="p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition">
+              <i class="fa-solid fa-key text-base"></i>
+            </button>
+
+            <button @click="logout" title="ອອກຈາກລະບົບ" class="p-2 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition">
+              <i class="fa-solid fa-right-from-bracket text-base"></i>
+            </button>
+          </div>
+
+          <div v-else class="flex items-center space-x-2">
+            <button v-if="canInstallPWA" @click="installPWA" title="ຕິດຕັ້ງແອັບ" class="p-2 text-theme-primary hover:bg-theme-light rounded-lg transition no-print">
+              <i class="fa-solid fa-download text-base"></i>
+            </button>
+            <button @click="showLoginModal = true" class="bg-theme-primary text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-medium shadow hover:opacity-90 transition">
+              <i class="fa-solid fa-lock mr-2"></i>ເຂົ້າສູ່ລະບົບ
+            </button>
+          </div>
+        </div>
+
+        <nav v-if="currentUser" class="flex space-x-1 sm:space-x-2 border-t border-slate-100 py-2 overflow-x-auto text-xs sm:text-sm font-medium">
+          <button @click="currentTab = 'dashboard'" :class="currentTab === 'dashboard' ? 'bg-theme-light text-theme-primary font-bold' : 'text-slate-600 hover:bg-slate-100'" class="px-3 py-1.5 rounded-lg whitespace-nowrap transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>Dashboard</span>
+          </button>
+
+          <button @click="currentTab = 'transactions'" :class="currentTab === 'transactions' ? 'bg-theme-light text-theme-primary font-bold' : 'text-slate-600 hover:bg-slate-100'" class="px-3 py-1.5 rounded-lg whitespace-nowrap transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-list-check"></i>
+            <span>ບັນທຶກທຸລະກຳ</span>
+            <span v-if="pendingCount > 0" class="ml-1 px-1.5 py-0.5 text-[10px] bg-amber-500 text-white rounded-full font-bold">{{ pendingCount }}</span>
+          </button>
+
+          <button @click="currentTab = 'categories'" :class="currentTab === 'categories' ? 'bg-theme-light text-theme-primary font-bold' : 'text-slate-600 hover:bg-slate-100'" class="px-3 py-1.5 rounded-lg whitespace-nowrap transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-folder-tree"></i>
+            <span>ຈັດການຮ່ວງເງິນ</span>
+          </button>
+
+          <button @click="currentTab = 'reports'" :class="currentTab === 'reports' ? 'bg-theme-light text-theme-primary font-bold' : 'text-slate-600 hover:bg-slate-100'" class="px-3 py-1.5 rounded-lg whitespace-nowrap transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span>ລາຍງານ & ພິມ A4</span>
+          </button>
+
+          <button v-if="currentUser.role === 'director'" @click="currentTab = 'settings'" :class="currentTab === 'settings' ? 'bg-theme-light text-theme-primary font-bold' : 'text-slate-600 hover:bg-slate-100'" class="px-3 py-1.5 rounded-lg whitespace-nowrap transition flex items-center space-x-1.5">
+            <i class="fa-solid fa-sliders"></i>
+            <span>ຕັ້ງຄ່າລະບົບ</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+      
+      <div v-if="!currentUser" class="space-y-6">
+
+        <div class="flex flex-col items-center justify-center py-8 text-center">
+          <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-2xl mb-3 shadow-inner">
+            <i class="fa-solid fa-school"></i>
+          </div>
+          <h2 class="text-lg sm:text-xl font-bold text-slate-800 mb-1">ຍິນດີຕ້ອນຮັບເຂົ້າສູ່ ລະບົບບັນຊີຄັງເງິນໂຮງຮຽນ ມຕ ຫຼັກ90</h2>
+          <p class="text-slate-500 max-w-md mb-4 text-xs sm:text-sm">ຂໍ້ມູນຂ້າງລຸ່ມນີ້ແມ່ນຜົນລວມສາທາລະນະ ຂອງ "ເງິນບໍລິຫານ" ແລະ "ເງິນຊຸມຊົນ" ເທົ່ານັ້ນ. ເຂົ້າສູ່ລະບົບເພື່ອເບິ່ງລາຍລະອຽດຮ່ວງເງິນອື່ນໆ ແລະ ຈັດການລາຍການ.</p>
+          <button @click="showLoginModal = true" class="bg-theme-primary text-white px-6 py-2.5 rounded-xl text-sm font-semibold shadow-lg hover:opacity-90 transition">
+            <i class="fa-solid fa-right-to-bracket mr-2"></i>ເຂົ້າສູ່ລະບົບດຽວນີ້
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="bg-emerald-500 text-white rounded-2xl p-5 shadow-lg">
+            <p class="text-emerald-100 text-xs sm:text-sm font-medium">ລາຍຮັບລວມ (ບໍລິຫານ+ຊຸມຊົນ)</p>
+            <h3 class="text-xl sm:text-2xl font-extrabold mt-1">{{ formatNumber(publicSummary.totalIncome) }} ກີບ</h3>
+          </div>
+          <div class="bg-rose-500 text-white rounded-2xl p-5 shadow-lg">
+            <p class="text-rose-100 text-xs sm:text-sm font-medium">ລາຍຈ່າຍລວມ (ບໍລິຫານ+ຊຸມຊົນ)</p>
+            <h3 class="text-xl sm:text-2xl font-extrabold mt-1">{{ formatNumber(publicSummary.totalExpense) }} ກີບ</h3>
+          </div>
+          <div class="bg-blue-600 text-white rounded-2xl p-5 shadow-lg">
+            <p class="text-blue-100 text-xs sm:text-sm font-medium">ຍັງເຫຼືອລວມ (ບໍລິຫານ+ຊຸມຊົນ)</p>
+            <h3 class="text-xl sm:text-2xl font-extrabold mt-1">{{ formatNumber(publicSummary.totalBalance) }} ກີບ</h3>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 border-b border-slate-200 bg-slate-50">
+            <h3 class="font-bold text-slate-800 text-sm sm:text-base">ລາຍລະອຽດຕາມຮ່ວງເງິນ</h3>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-slate-100 text-slate-600 border-b border-slate-200 font-semibold">
+                  <th class="p-3">ກຸ່ມຮ່ວງເງິນ</th>
+                  <th class="p-3">ຊື່ຮ່ວງເງິນ</th>
+                  <th class="p-3 text-right text-emerald-600">ລາຍຮັບ (ກີບ)</th>
+                  <th class="p-3 text-right text-rose-600">ລາຍຈ່າຍ (ກີບ)</th>
+                  <th class="p-3 text-right text-blue-600">ຍັງເຫຼືອ (ກີບ)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr v-if="publicSummary.categories.length === 0">
+                  <td colspan="5" class="p-4 text-center text-slate-400">ຍັງບໍ່ມີຂໍ້ມູນ</td>
+                </tr>
+                <tr v-for="cat in publicSummary.categories" :key="cat.name" class="hover:bg-slate-50 transition-colors">
+                  <td class="p-3"><span class="text-[11px] px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-700 border border-slate-200">{{ cat.group }}</span></td>
+                  <td class="p-3 font-semibold text-slate-800">{{ cat.name }}</td>
+                  <td class="p-3 text-right text-emerald-600 font-medium">+{{ formatNumber(cat.income) }}</td>
+                  <td class="p-3 text-right text-rose-600 font-medium">-{{ formatNumber(cat.expense) }}</td>
+                  <td class="p-3 text-right font-bold" :class="cat.balance >= 0 ? 'text-blue-600' : 'text-rose-600'">{{ formatNumber(cat.balance) }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <div v-else>
+
+        <!-- TAB 1: DASHBOARD -->
+        <div v-if="currentTab === 'dashboard'" class="space-y-6">
+
+          <div class="flex flex-wrap gap-3 items-center justify-between bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+            <label class="text-xs sm:text-sm font-semibold text-slate-700 flex items-center">
+              <i class="fa-solid fa-filter text-theme-primary mr-2"></i> ຂອບເຂດຂໍ້ມູນ:
+            </label>
+            <select v-model="dashboardCategoryFilter" class="text-xs sm:text-sm p-2 border border-slate-300 rounded-lg outline-none bg-white flex-1 sm:flex-none sm:min-w-[240px]">
+              <option value="MINE">ຮ່ວງເງິນຫຼັກຂອງຂ້ອຍ ({{ getRoleLabel(currentUser.role) }})</option>
+              <option value="ALL">ທັງໝົດ (ທຸກຮ່ວງເງິນ)</option>
+              <optgroup label="ຮ່ວງເງິນອື່ນໆ (ເລືອກສະເພາະ)">
+                <option v-for="cat in categories" :key="cat.id" :value="cat.name">{{ cat.name }}</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            
+            <!-- Income Card (Green #10B981) -->
+            <div class="bg-emerald-500 text-white rounded-2xl p-5 shadow-lg relative overflow-hidden flex flex-col justify-between">
+              <div class="flex justify-between items-start">
+                <div>
+                  <p class="text-emerald-100 text-xs sm:text-sm font-medium">ລາຍຮັບທັງໝົດ (Approved)</p>
+                  <h3 class="text-2xl sm:text-3xl font-extrabold mt-1">{{ formatNumber(dashboardIncome) }} ກີບ</h3>
+                </div>
+                <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-xl backdrop-blur-sm">
+                  <i class="fa-solid fa-arrow-down-left"></i>
+                </div>
+              </div>
+              <p class="text-[11px] text-emerald-100 mt-4 flex items-center">
+                <i class="fa-solid fa-circle-check mr-1 text-[10px]"></i> ປັບປຸງຂໍ້ມູນລ່າສຸດ
+              </p>
+            </div>
+
+            <!-- Expense Card (Red #EF4444) -->
+            <div class="bg-rose-500 text-white rounded-2xl p-5 shadow-lg relative overflow-hidden flex flex-col justify-between">
+              <div class="flex justify-between items-start">
+                <div>
+                  <p class="text-rose-100 text-xs sm:text-sm font-medium">ລາຍຈ່າຍທັງໝົດ (Approved)</p>
+                  <h3 class="text-2xl sm:text-3xl font-extrabold mt-1">{{ formatNumber(dashboardExpense) }} ກີບ</h3>
+                </div>
+                <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-xl backdrop-blur-sm">
+                  <i class="fa-solid fa-arrow-up-right"></i>
+                </div>
+              </div>
+              <p class="text-[11px] text-rose-100 mt-4 flex items-center">
+                <i class="fa-solid fa-clock-history mr-1 text-[10px]"></i> ອະນຸມັດແລ້ວ
+              </p>
+            </div>
+
+            <!-- Balance Card (Blue #3B82F6) -->
+            <div class="bg-blue-600 text-white rounded-2xl p-5 shadow-lg relative overflow-hidden flex flex-col justify-between">
+              <div class="flex justify-between items-start">
+                <div>
+                  <p class="text-blue-100 text-xs sm:text-sm font-medium">ຍອດເງິນຍັງເຫຼືອຄັງ (Balance)</p>
+                  <h3 class="text-2xl sm:text-3xl font-extrabold mt-1">{{ formatNumber(dashboardBalance) }} ກີບ</h3>
+                </div>
+                <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-xl backdrop-blur-sm">
+                  <i class="fa-solid fa-vault"></i>
+                </div>
+              </div>
+              <p class="text-[11px] text-blue-100 mt-4 flex items-center">
+                <i class="fa-solid fa-scale-balanced mr-1 text-[10px]"></i> ຍອດຄັງເງິນຕົວຈິງ
+              </p>
+            </div>
+          </div>
+
+          <!-- ວົງເງິນບໍລິຫານ ແບ່ງ 60% (ວຽກວິຊາການ) / 40% (ວຽກບໍລິຫານ) -->
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="p-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+              <h3 class="font-bold text-slate-800 text-sm sm:text-base flex items-center">
+                <i class="fa-solid fa-scale-balanced text-theme-primary mr-2"></i> ວົງເງິນຮ່ວງເງິນບໍລິຫານ (ແບ່ງ 60% / 40%)
+              </h3>
+              <span class="text-[11px] text-slate-500">ລາຍຮັບບໍລິຫານລວມ: {{ formatNumber(adminBudget.income_total) }} ກີບ</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4">
+              <div class="border border-slate-200 rounded-xl p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="text-xs sm:text-sm font-bold text-slate-700">ວຽກວິຊາການ (60%)</h4>
+                  <span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-semibold">60%</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center text-[11px]">
+                  <div>
+                    <p class="text-slate-400">ວົງເງິນ</p>
+                    <p class="font-bold text-slate-700">{{ formatNumber(adminBudget.academic.budget) }}</p>
+                  </div>
+                  <div>
+                    <p class="text-slate-400">ໃຊ້ໄປແລ້ວ</p>
+                    <p class="font-bold text-rose-600">{{ formatNumber(adminBudget.academic.used) }}</p>
+                  </div>
+                  <div>
+                    <p class="text-slate-400">ຍັງເຫຼືອ</p>
+                    <p class="font-bold" :class="adminBudget.academic.remaining >= 0 ? 'text-emerald-600' : 'text-rose-600'">{{ formatNumber(adminBudget.academic.remaining) }}</p>
+                  </div>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden">
+                  <div class="bg-blue-500 h-1.5" :style="{ width: budgetUsedPercent(adminBudget.academic) + '%' }"></div>
+                </div>
+              </div>
+
+              <div class="border border-slate-200 rounded-xl p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="text-xs sm:text-sm font-bold text-slate-700">ວຽກບໍລິຫານ (40%)</h4>
+                  <span class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-semibold">40%</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 text-center text-[11px]">
+                  <div>
+                    <p class="text-slate-400">ວົງເງິນ</p>
+                    <p class="font-bold text-slate-700">{{ formatNumber(adminBudget.admin.budget) }}</p>
+                  </div>
+                  <div>
+                    <p class="text-slate-400">ໃຊ້ໄປແລ້ວ</p>
+                    <p class="font-bold text-rose-600">{{ formatNumber(adminBudget.admin.used) }}</p>
+                  </div>
+                  <div>
+                    <p class="text-slate-400">ຍັງເຫຼືອ</p>
+                    <p class="font-bold" :class="adminBudget.admin.remaining >= 0 ? 'text-emerald-600' : 'text-rose-600'">{{ formatNumber(adminBudget.admin.remaining) }}</p>
+                  </div>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden">
+                  <div class="bg-purple-500 h-1.5" :style="{ width: budgetUsedPercent(adminBudget.admin) + '%' }"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div v-if="pendingCount > 0" class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-center justify-between text-amber-800 shadow-sm">
+            <div class="flex items-center space-x-3">
+              <i class="fa-solid fa-triangle-exclamation text-xl text-amber-500"></i>
+              <div>
+                <h4 class="font-bold text-xs sm:text-sm">ມີລາຍການລໍຖ້າການອະນຸມັດ {{ pendingCount }} ລາຍການ</h4>
+                <p class="text-[11px] text-amber-600">ກະລຸນາກວດສອບ ແລະ ກົດອະນຸມັດລາຍຈ່າຍເພື່ອໃຫ້ຍອດເງິນຖືກຕ້ອງ.</p>
+              </div>
+            </div>
+            <button @click="currentTab = 'transactions'; filterStatus = 'pending'" class="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow transition whitespace-nowrap">
+              ກວດສອບ
+            </button>
+          </div>
+
+          <div class="flex flex-wrap gap-3 items-center justify-between bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+            <h3 class="font-bold text-slate-800 text-sm sm:text-base flex items-center">
+              <i class="fa-solid fa-bolt text-amber-500 mr-2"></i> ເມນູດ່ວນ
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <button v-if="canAddIncome()" @click="openNewTransactionModal('INCOME')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium flex items-center space-x-1 shadow transition">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span>+ ບັນທຶກລາຍຮັບ</span>
+              </button>
+              <button v-if="canAddExpense()" @click="openNewTransactionModal('EXPENSE')" class="bg-rose-600 hover:bg-rose-700 text-white px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium flex items-center space-x-1 shadow transition">
+                <i class="fa-solid fa-minus-circle"></i>
+                <span>+ ບັນທຶກລາຍຈ່າຍ</span>
+              </button>
+              <button @click="currentTab = 'reports'" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium flex items-center space-x-1 border border-slate-300 transition">
+                <i class="fa-solid fa-print"></i>
+                <span>ພິມລາຍງານ</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="p-4 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+              <h3 class="font-bold text-slate-800 text-sm sm:text-base">ສະຫຼຸບຍອດຕາມຮ່ວງເງິນ (Budget Breakdown)</h3>
+              <span class="text-xs text-slate-500 font-medium">ຈຳນວນ {{ dashboardScopeCategories.length }} ຮ່ວງເງິນ</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="bg-slate-100 text-slate-600 border-b border-slate-200 font-semibold">
+                    <th class="p-3">ກຸ່ມຮ່ວງເງິນ</th>
+                    <th class="p-3">ຊື່ຮ່ວງເງິນ</th>
+                    <th class="p-3 text-right text-emerald-600">ລາຍຮັບ (ກີບ)</th>
+                    <th class="p-3 text-right text-rose-600">ລາຍຈ່າຍ (ກີບ)</th>
+                    <th class="p-3 text-right text-blue-600">ຍັງເຫຼືອ (ກີບ)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr v-if="dashboardScopeCategories.length === 0">
+                    <td colspan="5" class="p-4 text-center text-slate-400">ບໍ່ມີຮ່ວງເງິນຢູ່ໃນຂອບເຂດທີ່ເລືອກ</td>
+                  </tr>
+                  <tr v-for="cat in dashboardScopeCategories" :key="cat.name" class="hover:bg-slate-50 transition-colors">
+                    <td class="p-3">
+                      <span class="text-[11px] px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                        {{ cat.group }}
+                      </span>
+                    </td>
+                    <td class="p-3 font-semibold text-slate-800">{{ cat.name }}</td>
+                    <td class="p-3 text-right text-emerald-600 font-medium">+{{ formatNumber(cat.income) }}</td>
+                    <td class="p-3 text-right text-rose-600 font-medium">-{{ formatNumber(cat.expense) }}</td>
+                    <td class="p-3 text-right font-bold" :class="cat.balance >= 0 ? 'text-blue-600' : 'text-rose-600'">
+                      {{ formatNumber(cat.balance) }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB 2: TRANSACTIONS LIST -->
+        <div v-if="currentTab === 'transactions'" class="space-y-4">
+          
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-3">
+              <h3 class="font-bold text-slate-800 text-base sm:text-lg flex items-center">
+                <i class="fa-solid fa-list text-theme-primary mr-2"></i> ລາຍການທຸລະກຳ
+              </h3>
+
+              <div class="flex flex-wrap gap-2 w-full lg:w-auto">
+                <button v-if="canAddIncome()" @click="openNewTransactionModal('INCOME')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow transition">
+                  + ບັນທຶກລາຍຮັບ
+                </button>
+                <button v-if="canAddExpense()" @click="openNewTransactionModal('EXPENSE')" class="bg-rose-600 hover:bg-rose-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow transition">
+                  + ບັນທຶກລາຍຈ່າຍ
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 pt-2 border-t border-slate-100">
+              <div>
+                <label class="text-[11px] font-medium text-slate-500 block mb-1">ຄົ້ນຫາ</label>
+                <input v-model="searchQuery" type="text" placeholder="ຄົ້ນຫາເນື້ອໃນ/ຜູ້ບັນທຶກ..." class="w-full text-xs p-2 border border-slate-300 rounded-lg outline-none" />
+              </div>
+
+              <div>
+                <label class="text-[11px] font-medium text-slate-500 block mb-1">ຮ່ວງເງິນ</label>
+                <select v-model="filterCategory" class="w-full text-xs p-2 border border-slate-300 rounded-lg outline-none">
+                  <option value="ALL">-- ທຸກຮ່ວງເງິນ --</option>
+                  <option v-for="cat in categories" :key="cat.id" :value="cat.name">{{ cat.name }}</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="text-[11px] font-medium text-slate-500 block mb-1">ປະເພດ</label>
+                <select v-model="filterType" class="w-full text-xs p-2 border border-slate-300 rounded-lg outline-none">
+                  <option value="ALL">-- ທຸກປະເພດ --</option>
+                  <option value="INCOME">ລາຍຮັບ (+)</option>
+                  <option value="EXPENSE">ລາຍຈ່າຍ (-)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="text-[11px] font-medium text-slate-500 block mb-1">ສະຖານະ</label>
+                <select v-model="filterStatus" class="w-full text-xs p-2 border border-slate-300 rounded-lg outline-none">
+                  <option value="ALL">-- ທຸກສະຖານະ --</option>
+                  <option value="approved">ອະນຸມັດແລ້ວ</option>
+                  <option value="pending">ລໍຖ້າອະນຸມັດ</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="bg-slate-100 text-slate-600 border-b border-slate-200 font-semibold">
+                    <th class="p-3 whitespace-nowrap">ວັນທີ</th>
+                    <th class="p-3 whitespace-nowrap">ປະເພດ</th>
+                    <th class="p-3 whitespace-nowrap">ຮ່ວງເງິນ</th>
+                    <th class="p-3">ເນື້ອໃນລາຍການ</th>
+                    <th class="p-3 text-right whitespace-nowrap">ຈຳນວນເງິນ (ກີບ)</th>
+                    <th class="p-3 text-center whitespace-nowrap">ໃບເບິນ</th>
+                    <th class="p-3 text-center whitespace-nowrap">ສະຖານະ</th>
+                    <th class="p-3 text-center whitespace-nowrap">ຈັດການ</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr v-if="filteredTransactions.length === 0">
+                    <td colspan="8" class="p-8 text-center text-slate-400">
+                      <i class="fa-solid fa-folder-open text-2xl mb-2 block"></i>
+                      ບໍ່ພົບຂໍ້ມູນລາຍການທຸລະກຳ
+                    </td>
+                  </tr>
+
+                  <tr v-for="tx in filteredTransactions" :key="tx.id" class="hover:bg-slate-50 transition-colors">
+                    <td class="p-3 whitespace-nowrap font-medium text-slate-700">{{ tx.date }}</td>
+                    <td class="p-3 whitespace-nowrap">
+                      <span :class="tx.type === 'INCOME' ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'" 
+                            class="px-2 py-0.5 rounded-full text-[11px] font-bold">
+                        {{ tx.type === 'INCOME' ? 'ລາຍຮັບ' : 'ລາຍຈ່າຍ' }}
+                      </span>
+                    </td>
+                    <td class="p-3 whitespace-nowrap font-medium text-slate-800">{{ tx.category }}</td>
+                    <td class="p-3">
+                      <div class="font-medium text-slate-800">{{ tx.description }}</div>
+                      <div class="text-[10px] text-slate-400">ບັນທຶກໂດຍ: {{ tx.created_by }}</div>
+                    </td>
+                    <td class="p-3 text-right font-bold whitespace-nowrap" :class="tx.type === 'INCOME' ? 'text-emerald-600' : 'text-rose-600'">
+                      {{ tx.type === 'INCOME' ? '+' : '-' }}{{ formatNumber(tx.amount) }}
+                    </td>
+                    <td class="p-3 text-center whitespace-nowrap">
+                      <button v-if="tx.receipt_url" @click="openReceiptViewer(tx.receipt_url)" class="text-blue-600 hover:text-blue-800 bg-blue-50 p-1.5 rounded-md transition" title="ເບິ່ງຮູບໃບເບິນ">
+                        <i class="fa-solid fa-image text-sm"></i>
+                      </button>
+                      <span v-else class="text-slate-300">-</span>
+                    </td>
+                    <td class="p-3 text-center whitespace-nowrap">
+                      <span :class="tx.status === 'approved' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'" 
+                            class="px-2 py-0.5 rounded-full text-[10px] font-bold">
+                        {{ tx.status === 'approved' ? 'ອະນຸມັດແລ້ວ' : 'ລໍຖ້າອະນຸມັດ' }}
+                      </span>
+                    </td>
+                    <td class="p-3 text-center whitespace-nowrap space-x-1">
+                      <button v-if="tx.status === 'pending' && currentUser.role === 'director'" 
+                              @click="approveTx(tx.id)" 
+                              class="bg-emerald-500 hover:bg-emerald-600 text-white px-2 py-0.5 rounded text-xs font-bold transition">
+                        ອະນຸມັດ
+                      </button>
+
+                      <button v-if="canEditOrDelete(tx)" 
+                              @click="openEditTransactionModal(tx)" 
+                              class="text-amber-600 hover:text-amber-800 bg-amber-50 p-1 rounded" title="ແກ້ໄຂ">
+                        <i class="fa-solid fa-pen text-xs"></i>
+                      </button>
+
+                      <button v-if="canEditOrDelete(tx)" 
+                              @click="confirmDeleteTx(tx.id)" 
+                              class="text-rose-600 hover:text-rose-800 bg-rose-50 p-1 rounded" title="ລົບ">
+                        <i class="fa-solid fa-trash text-xs"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB 3: CATEGORIES MANAGEMENT -->
+        <div v-if="currentTab === 'categories'" class="space-y-4">
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+            <div>
+              <h3 class="font-bold text-slate-800 text-base sm:text-lg">ຈັດການຮ່ວງເງິນ (Budget Categories)</h3>
+              <p class="text-xs text-slate-500">ເພີ່ມ, ແກ້ໄຂ, ຫຼື ລົບ ຮ່ວງເງິນໃນລະບົບ</p>
+            </div>
+            <button v-if="currentUser.role === 'director'" @click="openCategoryModal()" class="bg-theme-primary text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow hover:opacity-90 transition">
+              + ເພີ່ມຮ່ວງເງິນ
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div v-for="(groupCats, groupName) in groupedCategories" :key="groupName" class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+              <div class="flex justify-between items-center mb-3 pb-2 border-b border-slate-100">
+                <h4 class="font-bold text-slate-800 text-xs sm:text-sm flex items-center">
+                  <i class="fa-solid fa-folder text-amber-500 mr-2"></i> {{ groupName }}
+                </h4>
+                <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded text-slate-600 font-medium">{{ groupCats.length }} ລາຍການ</span>
+              </div>
+              <ul class="divide-y divide-slate-100 text-xs sm:text-sm">
+                <li v-for="cat in groupCats" :key="cat.id" class="py-2 flex justify-between items-center">
+                  <span class="text-slate-700 font-medium">{{ cat.name }}</span>
+                  <div v-if="currentUser.role === 'director'" class="space-x-1">
+                    <button @click="openCategoryModal(cat)" class="text-amber-600 hover:text-amber-800 p-1"><i class="fa-solid fa-pen text-xs"></i></button>
+                    <button @click="confirmDeleteCategory(cat.id)" class="text-rose-600 hover:text-rose-800 p-1"><i class="fa-solid fa-trash text-xs"></i></button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: REPORTS & PRINTING -->
+        <div v-if="currentTab === 'reports'" class="space-y-4">
+          
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm no-print space-y-3">
+            <div class="flex flex-wrap gap-2 justify-between items-center">
+              <h3 class="font-bold text-slate-800 text-base sm:text-lg">ລາຍງານການເງິນ & ພິມ PDF A4</h3>
+              <div class="flex gap-2">
+                <button @click="exportToExcel" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-bold shadow transition flex items-center">
+                  <i class="fa-solid fa-file-excel mr-2"></i> Export .xlsx
+                </button>
+                <button @click="triggerPrint" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-bold shadow transition flex items-center">
+                  <i class="fa-solid fa-print mr-2"></i> ພິມລາຍງານ (Print A4)
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 border-t border-slate-100">
+              <div>
+                <label class="text-xs font-medium text-slate-500 block mb-1">ຕັ້ງແຕ່ວັນທີ</label>
+                <input v-model="reportStartDate" type="date" class="w-full text-xs p-2 border border-slate-300 rounded-lg outline-none" />
+              </div>
+              <div>
+                <label class="text-xs font-medium text-slate-500 block mb-1">ຫາວັນທີ</label>
+                <input v-model="reportEndDate" type="date" class="w-full text-xs p-2 border border-slate-300 rounded-lg outline-none" />
+              </div>
+              <div>
+                <label class="text-xs font-medium text-slate-500 block mb-1">ເລືອກຮ່ວງເງິນ</label>
+                <select v-model="reportCategory" class="w-full text-xs p-2 border border-slate-300 rounded-lg outline-none">
+                  <option value="ALL">-- ທຸກຮ່ວງເງິນ --</option>
+                  <option v-for="cat in categories" :key="cat.id" :value="cat.name">{{ cat.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Printable A4 Document Sheet -->
+          <div id="printable-report" class="bg-white p-8 rounded-xl border border-slate-200 shadow-md text-slate-900 mx-auto max-w-4xl">
+            
+            <div class="mb-6 space-y-3">
+              <!-- Official Lao Header -->
+              <div class="text-center text-xs sm:text-sm font-semibold text-slate-900 leading-normal">
+                <p class="font-bold">ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ</p>
+                <p>ສັນຕິພາບ ເອກະລາດ ປະຊາທິປະໄຕ ເອກະພາບ ວັດທະນະຖາວອນ</p>
+                <div class="w-36 border-b border-slate-400 mx-auto my-1.5"></div>
+              </div>
+
+              <div class="flex justify-between items-end pb-3 border-b border-slate-800">
+                <div class="text-left font-bold text-slate-900 text-xs sm:text-sm leading-tight">
+                  <p>{{ settings.school_name || 'ໂຮງຮຽນ ມຕ ຫຼັກ90' }}</p>
+                  <p class="text-[11px] font-normal text-slate-600 mt-0.5">ລະບົບບັນຊີຄັງເງິນໂຮງຮຽນ</p>
+                </div>
+                <div class="text-right text-[11px] text-slate-500">
+                  <p>ເລກທີ: ........./ມຕ90</p>
+                </div>
+              </div>
+
+              <div class="text-center space-y-1 pt-3">
+                <h3 class="text-base sm:text-lg font-bold text-slate-900">ໃບສະຫຼຸບລາຍຮັບ - ລາຍຈ່າຍ ຄັງເງິນໂຮງຮຽນ</h3>
+                <p class="text-xs text-slate-600">
+                  ປະຈຳໄລຍະ: {{ reportStartDate || 'ເລີ່ມຕົ້ນ' }} ຫາ {{ reportEndDate || 'ປັດຈຸບັນ' }}
+                  <span v-if="reportCategory !== 'ALL'"> | ຮ່ວງເງິນ: {{ reportCategory }}</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 mb-6 text-center text-xs border border-slate-300 rounded-lg p-3 bg-slate-50">
+              <div>
+                <p class="text-slate-500 font-medium">ລາຍຮັບທັງໝົດ</p>
+                <p class="text-sm font-bold text-emerald-600">+{{ formatNumber(reportTotalIncome) }} ກີບ</p>
+              </div>
+              <div class="border-x border-slate-300">
+                <p class="text-slate-500 font-medium">ລາຍຈ່າຍທັງໝົດ</p>
+                <p class="text-sm font-bold text-rose-600">-{{ formatNumber(reportTotalExpense) }} ກີບ</p>
+              </div>
+              <div>
+                <p class="text-slate-500 font-medium">ຍອດເຫຼືອສຸທິ</p>
+                <p class="text-sm font-bold text-blue-600">{{ formatNumber(reportTotalIncome - reportTotalExpense) }} ກີບ</p>
+                <p class="text-[10px] text-slate-500 italic mt-0.5">({{ numberToLaoText(reportTotalIncome - reportTotalExpense) }})</p>
+              </div>
+            </div>
+
+            <table class="w-full text-left text-xs mb-8 official-doc-table">
+              <thead>
+                <tr class="text-slate-800 font-bold">
+                  <th class="p-2 text-center">ລຳດັບ</th>
+                  <th class="p-2">ວັນທີ</th>
+                  <th class="p-2">ຮ່ວງເງິນ</th>
+                  <th class="p-2">ເນື້ອໃນລາຍການ</th>
+                  <th class="p-2 text-right">ລາຍຮັບ (ກີບ)</th>
+                  <th class="p-2 text-right">ລາຍຈ່າຍ (ກີບ)</th>
+                  <th class="p-2">ຜູ້ຮັບເງິນ</th>
+                  <th class="p-2 text-center">ລາຍເຊັນ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-if="reportTransactions.length === 0">
+                  <td colspan="8" class="p-4 text-center text-slate-500">ບໍ່ມີຂໍ້ມູນໃນໄລຍະທີ່ເລືອກ</td>
+                </tr>
+                <tr v-for="(tx, txIdx) in reportTransactions" :key="tx.id">
+                  <td class="p-2 text-center">{{ txIdx + 1 }}</td>
+                  <td class="p-2 whitespace-nowrap">{{ tx.date }}</td>
+                  <td class="p-2 font-medium">{{ tx.category }}</td>
+                  <td class="p-2">{{ tx.description }}</td>
+                  <td class="p-2 text-right font-semibold text-emerald-700">
+                    {{ tx.type === 'INCOME' ? formatNumber(tx.amount) : '-' }}
+                  </td>
+                  <td class="p-2 text-right font-semibold text-rose-700">
+                    {{ tx.type === 'EXPENSE' ? formatNumber(tx.amount) : '-' }}
+                  </td>
+                  <td class="p-2 whitespace-nowrap">{{ tx.recipient_name || '-' }}</td>
+                  <td class="p-2 text-center">
+                    <img v-if="tx.signature_url" :src="tx.signature_url" class="h-8 mx-auto object-contain" />
+                    <span v-else class="text-slate-300">-</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- 4 Mandated Signature Blocks -->
+            <div class="mt-12 pt-4">
+              <p class="text-right text-xs text-slate-600 mb-6">ວັນທີ ....................., ເດືອນ ........... ປີ ...............</p>
+              
+              <div class="grid grid-cols-4 gap-2 text-center text-[11px]">
+                <div class="space-y-12">
+                  <div>
+                    <p class="font-bold">ຜູ້ອຳນວຍການໂຮງຮຽນ</p>
+                    <p class="text-[10px] text-slate-500">(ເຊັນ ແລະ ປະທັບຕາ)</p>
+                  </div>
+                  <p class="pt-8 border-b border-dashed border-slate-400 mx-2"></p>
+                </div>
+
+                <div class="space-y-12">
+                  <div>
+                    <p class="font-bold">ບັນຊີ</p>
+                    <p class="text-[10px] text-slate-500">(ເຊັນ ແລະ ຊື່ແທ້)</p>
+                  </div>
+                  <p class="pt-8 border-b border-dashed border-slate-400 mx-2"></p>
+                </div>
+
+                <div class="space-y-12">
+                  <div>
+                    <p class="font-bold">ຄັງເງິນສົດ</p>
+                    <p class="text-[10px] text-slate-500">(ເຊັນ ແລະ ຊື່ແທ້)</p>
+                  </div>
+                  <p class="pt-8 border-b border-dashed border-slate-400 mx-2"></p>
+                </div>
+
+                <div class="space-y-12">
+                  <div>
+                    <p class="font-bold">ຜູ້ສະຫຼຸບເງິນ</p>
+                    <p class="text-[10px] text-slate-500">(ເຊັນ ແລະ ຊື່ແທ້)</p>
+                  </div>
+                  <p class="pt-8 border-b border-dashed border-slate-400 mx-2"></p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- TAB 5: SETTINGS (DIRECTOR ONLY) -->
+        <div v-if="currentTab === 'settings' && currentUser.role === 'director'" class="max-w-2xl mx-auto space-y-6">
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-800 text-base sm:text-lg border-b border-slate-100 pb-3">
+              <i class="fa-solid fa-sliders text-theme-primary mr-2"></i> ຕັ້ງຄ່າແອັບ ແລະ ໂທນສີ (Theme Customization)
+            </h3>
+
+            <div>
+              <label class="text-xs font-semibold text-slate-700 block mb-2">ເລືອກໂທນສີຂອງແອັບ (Theme Color)</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <button @click="setTheme('theme-blue')" 
+                        :class="currentTheme === 'theme-blue' ? 'ring-2 ring-blue-500 font-bold' : ''" 
+                        class="p-3 bg-blue-50 border border-blue-200 rounded-xl text-blue-700 text-xs flex items-center justify-center space-x-2">
+                  <span class="w-4 h-4 bg-blue-600 rounded-full inline-block"></span>
+                  <span>ສີຟ້າ (Blue)</span>
+                </button>
+
+                <button @click="setTheme('theme-green')" 
+                        :class="currentTheme === 'theme-green' ? 'ring-2 ring-emerald-500 font-bold' : ''" 
+                        class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 text-xs flex items-center justify-center space-x-2">
+                  <span class="w-4 h-4 bg-emerald-600 rounded-full inline-block"></span>
+                  <span>ສີຂຽວ (Green)</span>
+                </button>
+
+                <button @click="setTheme('theme-purple')" 
+                        :class="currentTheme === 'theme-purple' ? 'ring-2 ring-purple-500 font-bold' : ''" 
+                        class="p-3 bg-purple-50 border border-purple-200 rounded-xl text-purple-700 text-xs flex items-center justify-center space-x-2">
+                  <span class="w-4 h-4 bg-purple-600 rounded-full inline-block"></span>
+                  <span>ສີມ່ວງ (Purple)</span>
+                </button>
+
+                <button @click="setTheme('theme-orange')" 
+                        :class="currentTheme === 'theme-orange' ? 'ring-2 ring-orange-500 font-bold' : ''" 
+                        class="p-3 bg-orange-50 border border-orange-200 rounded-xl text-orange-700 text-xs flex items-center justify-center space-x-2">
+                  <span class="w-4 h-4 bg-orange-600 rounded-full inline-block"></span>
+                  <span>ສີສົ້ມ (Orange)</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label class="text-xs font-semibold text-slate-700 block mb-1">ຊື່ໂຮງຮຽນ</label>
+              <input v-model="settings.school_name" type="text" class="w-full text-xs sm:text-sm p-2.5 border border-slate-300 rounded-lg outline-none" />
+            </div>
+
+            <div>
+              <label class="text-xs font-semibold text-slate-700 block mb-1">ໂລໂກ້ໂຮງຮຽນ (School Logo)</label>
+              <div class="flex items-center space-x-3">
+                <img :src="settings.logo_url" @error="handleLogoError" class="w-14 h-14 object-contain rounded-full bg-slate-100 p-1 border border-slate-200 flex-shrink-0" />
+                <div class="flex-1">
+                  <input type="file" accept="image/*" @change="handleLogoUpload" :disabled="isUploadingLogo" class="w-full text-xs p-1.5 border border-slate-300 rounded-lg file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:bg-slate-100" />
+                  <p class="text-[11px] text-slate-400 mt-1">
+                    <i v-if="isUploadingLogo" class="fa-solid fa-spinner fa-spin mr-1"></i>
+                    {{ isUploadingLogo ? 'ກຳລັງອັບໂຫຼດ...' : 'ເລືອກຮູບພາບຈາກເຄື່ອງ (ອັບໂຫຼດຂຶ້ນ Google Drive ອັດຕະໂນມັດ)' }}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <button @click="saveSystemSettings" :disabled="isBusy" class="w-full bg-theme-primary text-white py-2.5 rounded-lg text-xs sm:text-sm font-semibold shadow hover:opacity-90 transition disabled:opacity-60">
+              <i v-if="isBusy" class="fa-solid fa-spinner fa-spin mr-1"></i>ບັນທຶກການຕັ້ງຄ່າ
+            </button>
+          </div>
+
+          <!-- Google Integration -->
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-800 text-base sm:text-lg border-b border-slate-100 pb-3">
+              <i class="fa-brands fa-google-drive text-theme-primary mr-2"></i> Google Integration
+            </h3>
+            <p class="text-[11px] text-slate-500 -mt-2">ຕັ້ງຄ່າ 2 ຄ່ານີ້ ເພື່ອກຳນົດບ່ອນເກັບຂໍ້ມູນ ແລະ ໄຟລ໌ຂອງລະບົບ. ຖ້າປະໄວ້ຫວ່າງ ລະບົບຈະໃຊ້ Sheet/Folder ເລີ່ມຕົ້ນອັດຕະໂນມັດ.</p>
+
+            <div>
+              <label class="text-xs font-semibold text-slate-700 block mb-1">Google Sheet URL</label>
+              <input v-model="settings.google_sheet_url" type="text" placeholder="https://docs.google.com/spreadsheets/d/..." class="w-full text-xs sm:text-sm p-2.5 border border-slate-300 rounded-lg outline-none" />
+              <p class="text-[11px] text-slate-400 mt-1">Spreadsheet ບ່ອນເກັບ Users / Categories / Transactions. ຕ້ອງແຊຣ໌ໃຫ້ບັນຊີເຈົ້າຂອງ Script ນີ້ແກ້ໄຂໄດ້.</p>
+            </div>
+
+            <div>
+              <label class="text-xs font-semibold text-slate-700 block mb-1">Google Drive Folder ID</label>
+              <input v-model="settings.google_drive_folder_id" type="text" placeholder="ເຊັ່ນ: 1AbCдEfGhIjKlMnOpQrStUvWxYz" class="w-full text-xs sm:text-sm p-2.5 border border-slate-300 rounded-lg outline-none" />
+              <p class="text-[11px] text-slate-400 mt-1">Folder ບ່ອນເກັບ ໃບບິນ, ໂລໂກ້, ແລະ ລາຍເຊັນ ທັງໝົດ. ຫາ ID ໄດ້ຈາກ URL ຂອງ Folder ໃນ Google Drive.</p>
+            </div>
+
+            <button @click="saveSystemSettings" :disabled="isBusy" class="w-full bg-theme-primary text-white py-2.5 rounded-lg text-xs sm:text-sm font-semibold shadow hover:opacity-90 transition disabled:opacity-60">
+              <i v-if="isBusy" class="fa-solid fa-spinner fa-spin mr-1"></i>ບັນທຶກການຕັ້ງຄ່າ Google Integration
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- MODAL 1: LOGIN -->
+    <div v-if="showLoginModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+      <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+        <button @click="showLoginModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+
+        <div class="text-center mb-6">
+          <img :src="settings.logo_url || 'https://cdn-icons-png.flaticon.com/512/2997/2997295.png'" class="w-14 h-14 mx-auto mb-2 object-contain" />
+          <h3 class="text-lg font-bold text-slate-800">ເຂົ້າສູ່ລະບົບ</h3>
+          <p class="text-xs text-slate-500">ລະບົບບັນຊີຄັງເງິນ {{ settings.school_name }}</p>
+        </div>
+
+        <form @submit.prevent="handleLogin" class="space-y-4">
+          <div>
+            <label class="text-xs font-semibold text-slate-700 block mb-1">ຊື່ຜູ້ໃຊ້ (Username)</label>
+            <input v-model="loginForm.username" type="text" required class="w-full p-2.5 text-xs sm:text-sm border border-slate-300 rounded-lg outline-none" />
+          </div>
+
+          <div>
+            <label class="text-xs font-semibold text-slate-700 block mb-1">ລະຫັດຜ່ານ (Password)</label>
+            <input v-model="loginForm.password" type="password" required class="w-full p-2.5 text-xs sm:text-sm border border-slate-300 rounded-lg outline-none" />
+          </div>
+
+          <div class="flex items-center justify-between text-xs">
+            <label class="flex items-center text-slate-600 cursor-pointer">
+              <input v-model="loginForm.remember" type="checkbox" class="rounded border-slate-300 text-blue-600 mr-1.5" />
+              ຈື່ຂ້ອຍໄວ້ (Remember Me)
+            </label>
+            <button type="button" @click="showForgotPasswordModal = true; showLoginModal = false;" class="text-theme-primary font-medium hover:underline">
+              ລືມລະຫັດຜ່ານ?
+            </button>
+          </div>
+
+          <button type="submit" :disabled="isBusy" class="w-full bg-theme-primary text-white py-2.5 rounded-lg text-xs sm:text-sm font-semibold shadow hover:opacity-90 transition disabled:opacity-60">
+            <i v-if="isBusy" class="fa-solid fa-spinner fa-spin mr-1"></i>ເຂົ້າສູ່ລະບົບ
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL 2: ADD / EDIT TRANSACTION -->
+    <div v-if="showTxModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+      <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+        <button @click="showTxModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+
+        <h3 class="text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100">
+          {{ txForm.id ? 'ແກ້ໄຂລາຍການ' : 'ບັນທຶກ' + (txForm.type === 'INCOME' ? 'ລາຍຮັບ' : 'ລາຍຈ່າຍ') }}
+        </h3>
+
+        <form @submit.prevent="saveTransaction" class="space-y-4 text-xs sm:text-sm">
+          
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="font-semibold text-slate-700 block mb-1">ປະເພດ</label>
+              <select v-model="txForm.type" disabled class="w-full p-2 border border-slate-300 rounded-lg bg-slate-100 font-bold" :class="txForm.type === 'INCOME' ? 'text-emerald-600' : 'text-rose-600'">
+                <option value="INCOME">ລາຍຮັບ (+)</option>
+                <option value="EXPENSE">ລາຍຈ່າຍ (-)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="font-semibold text-slate-700 block mb-1">ວັນທີ</label>
+              <input v-model="txForm.date" type="date" required class="w-full p-2 border border-slate-300 rounded-lg outline-none" />
+            </div>
+          </div>
+
+          <div>
+            <label class="font-semibold text-slate-700 block mb-1">ເລືອກຮ່ວງເງິນ</label>
+            <select v-model="txForm.category" required class="w-full p-2 border border-slate-300 rounded-lg outline-none">
+              <option value="" disabled>-- ເລືອກຮ່ວງເງິນ --</option>
+              <option v-for="cat in allowedCategoriesForUser" :key="cat.id" :value="cat.name">{{ cat.group }} - {{ cat.name }}</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="font-semibold text-slate-700 block mb-1">ຈຳນວນເງິນ (ກີບ)</label>
+            <input v-model.number="txForm.amount" type="number" min="1" required placeholder="0" class="w-full p-2 border border-slate-300 rounded-lg text-base font-bold outline-none" />
+          </div>
+
+          <!-- ສະເພາະ ລາຍຈ່າຍ ຮ່ວງເງິນບໍລິຫານ: ຕ້ອງເລືອກປະເພດວຽກ ເພື່ອກວດວົງເງິນ 60%/40% -->
+          <div v-if="txForm.type === 'EXPENSE' && txForm.category === ADMIN_CATEGORY_NAME" class="bg-amber-50 border border-amber-200 rounded-lg p-3">
+            <label class="font-semibold text-slate-700 block mb-1">ປະເພດວຽກ (ຮ່ວງເງິນບໍລິຫານ)</label>
+            <select v-model="txForm.budget_type" required class="w-full p-2 border border-slate-300 rounded-lg outline-none">
+              <option value="" disabled>-- ເລືອກປະເພດວຽກ --</option>
+              <option value="academic">ວຽກວິຊາການ (60%) - ຍັງເຫຼືອ {{ formatNumber(adminBudget.academic.remaining) }} ກີບ</option>
+              <option value="admin">ວຽກບໍລິຫານ (40%) - ຍັງເຫຼືອ {{ formatNumber(adminBudget.admin.remaining) }} ກີບ</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="font-semibold text-slate-700 block mb-1">ເນື້ອໃນອະທິບາຍລາຍການ</label>
+            <textarea v-model="txForm.description" rows="2" required placeholder="ລະບຸລາຍລະອຽດ..." class="w-full p-2 border border-slate-300 rounded-lg outline-none"></textarea>
+          </div>
+
+          <div v-if="txForm.type === 'EXPENSE'">
+            <label class="font-semibold text-slate-700 block mb-1">ຜູ້ຮັບເງິນ</label>
+            <input v-model="txForm.recipient_name" type="text" placeholder="ຊື່ ແລະ ນາມສະກຸນ ຜູ້ຮັບເງິນ" class="w-full p-2 border border-slate-300 rounded-lg outline-none" />
+          </div>
+
+          <div>
+            <label class="font-semibold text-slate-700 block mb-1">ແນບຮູບໃບເບິນ / ບິນຮັບ-ຈ່າຍ</label>
+            <input type="file" accept="image/*" @change="handleFileUpload" class="w-full text-xs p-1 border border-slate-300 rounded-lg file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:bg-slate-100" />
+            
+            <div v-if="txForm.receipt_preview" class="mt-2 text-center">
+              <img :src="txForm.receipt_preview" class="max-h-28 mx-auto rounded border border-slate-200 shadow-sm" />
+              <p class="text-[10px] text-emerald-600 mt-1">✓ ແນບຮູບໃບເບິນແລ້ວ</p>
+            </div>
+          </div>
+
+          <div v-if="txForm.type === 'EXPENSE'">
+            <label class="font-semibold text-slate-700 block mb-1">ລາຍເຊັນຜູ້ຮັບເງິນ</label>
+            <div v-if="txForm.signature_base64 || txForm.signature_url" class="text-center border border-slate-200 rounded-lg p-2 mb-2">
+              <img :src="txForm.signature_base64 || txForm.signature_url" class="max-h-20 mx-auto" />
+              <p class="text-[10px] text-emerald-600 mt-1">✓ ເຊັນແລ້ວ</p>
+            </div>
+            <button type="button" @click="openSignaturePad('tx')" class="w-full py-2 border border-dashed border-slate-300 rounded-lg text-slate-600 text-xs font-medium hover:bg-slate-50 transition">
+              <i class="fa-solid fa-signature mr-1"></i> {{ (txForm.signature_base64 || txForm.signature_url) ? 'ເຊັນຄືນໃໝ່' : 'ເປີດແຜ່ນເຊັນ (Signature Pad)' }}
+            </button>
+          </div>
+
+          <div class="pt-3 flex space-x-2">
+            <button type="button" @click="showTxModal = false" class="w-1/2 py-2 border border-slate-300 rounded-lg font-semibold text-slate-600 hover:bg-slate-50">
+              ຍົກເລີກ
+            </button>
+            <button type="submit" class="w-1/2 py-2 bg-theme-primary text-white rounded-lg font-semibold shadow hover:opacity-90">
+              ບັນທຶກ
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL 2b: ADD / EDIT CATEGORY -->
+    <div v-if="showCatModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+      <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl relative">
+        <button @click="showCatModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+        <h3 class="text-base font-bold text-slate-800 mb-4">{{ catForm.id ? 'ແກ້ໄຂຮ່ວງເງິນ' : 'ເພີ່ມຮ່ວງເງິນໃໝ່' }}</h3>
+        <form @submit.prevent="saveCategoryForm" class="space-y-3 text-xs sm:text-sm">
+          <div>
+            <label class="font-semibold text-slate-700 block mb-1">ກຸ່ມຮ່ວງເງິນ</label>
+            <input v-model="catForm.group" type="text" required placeholder="ເຊັ່ນ: ເງິນກິດຈະກຳ" class="w-full p-2 border border-slate-300 rounded-lg outline-none" />
+          </div>
+          <div>
+            <label class="font-semibold text-slate-700 block mb-1">ຊື່ຮ່ວງເງິນ</label>
+            <input v-model="catForm.name" type="text" required class="w-full p-2 border border-slate-300 rounded-lg outline-none" />
+          </div>
+          <button type="submit" :disabled="isBusy" class="w-full bg-theme-primary text-white py-2 rounded-lg font-semibold shadow hover:opacity-90 disabled:opacity-60">
+            <i v-if="isBusy" class="fa-solid fa-spinner fa-spin mr-1"></i>ບັນທຶກ
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL 3: RECEIPT VIEWER -->
+    <div v-if="showReceiptViewerModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4">
+      <div class="bg-white rounded-2xl max-w-xl w-full p-4 shadow-2xl relative text-center">
+        <button @click="showReceiptViewerModal = false" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 text-xl">
+          <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+        <h4 class="font-bold text-slate-800 text-xs sm:text-sm mb-3">ຕົວຢ່າງຮູບໃບເບິນ / ບິນຮັບ-ຈ່າຍ</h4>
+        <img :src="activeReceiptUrl" class="max-h-[65vh] mx-auto rounded border border-slate-200 object-contain shadow" />
+        <div class="mt-3">
+          <a :href="activeReceiptUrl" target="_blank" class="text-xs text-blue-600 hover:underline font-medium">
+            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>ເປີດຮູບຂະໜາດເຕັມ
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 4: CHANGE PASSWORD -->
+    <div v-if="showChangePasswordModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+      <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl relative">
+        <button @click="showChangePasswordModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+        <h3 class="text-base font-bold text-slate-800 mb-4">ປ່ຽນລະຫັດຜ່ານ</h3>
+        <form @submit.prevent="handleChangePassword" class="space-y-3 text-xs sm:text-sm">
+          <div>
+            <label class="font-semibold text-slate-700 block mb-1">ລະຫັດຜ່ານເກົ່າ</label>
+            <input v-model="passForm.oldPass" type="password" required class="w-full p-2 border border-slate-300 rounded-lg outline-none" />
+          </div>
+          <div>
+            <label class="font-semibold text-slate-700 block mb-1">ລະຫັດຜ່ານໃໝ່</label>
+            <input v-model="passForm.newPass" type="password" required class="w-full p-2 border border-slate-300 rounded-lg outline-none" />
+          </div>
+          <button type="submit" class="w-full bg-theme-primary text-white py-2 rounded-lg font-semibold shadow hover:opacity-90">
+            ຢືນຢັນປ່ຽນລະຫັດຜ່ານ
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL 5: FORGOT PASSWORD -->
+    <div v-if="showForgotPasswordModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+      <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl relative text-center">
+        <button @click="showForgotPasswordModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+        <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-xl mx-auto mb-3">
+          <i class="fa-solid fa-key"></i>
+        </div>
+        <h3 class="text-base font-bold text-slate-800 mb-2">ລືມລະຫັດຜ່ານ?</h3>
+        <p class="text-xs text-slate-500 mb-4">ກະລຸນາຕິດຕໍ່ ຜູ້ອຳນວຍການ ຫຼື ຜູ້ດູແລລະບົບ ເພື່ອທຳການຣີເຊັດລະຫັດຜ່ານຂອງທ່ານ.</p>
+        <button @click="showForgotPasswordModal = false; showLoginModal = true;" class="bg-slate-800 text-white px-4 py-2 rounded-lg text-xs font-semibold">
+          ກັບໄປໜ້າເຂົ້າສູ່ລະບົບ
+        </button>
+      </div>
+    </div>
+
+    <!-- MODAL 6: SIGNATURE PAD -->
+    <div v-if="showSignatureModal" class="fixed inset-0 z-[102] flex items-center justify-center bg-slate-900/70 backdrop-blur-sm p-4 no-print">
+      <div class="bg-white rounded-2xl max-w-md w-full p-5 shadow-2xl relative">
+        <button @click="closeSignaturePad" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+        <h3 class="text-base font-bold text-slate-800 mb-1">ລາຍເຊັນຜູ້ຮັບເງິນ</h3>
+        <p class="text-[11px] text-slate-500 mb-3">ໃຊ້ນິ້ວມື, ໂຕກົດເມົາ ຫຼື ປາກກາ Stylus ເຊັນລົງໃນກ່ອງລຸ່ມນີ້ (ຮອງຮັບ Android, iPhone, Tablet)</p>
+
+        <div class="border-2 border-dashed border-slate-300 rounded-xl overflow-hidden bg-white">
+          <canvas ref="sigCanvas" id="signature-canvas" class="signature-canvas w-full" style="height: 220px;"></canvas>
+        </div>
+
+        <div class="flex space-x-2 mt-4">
+          <button type="button" @click="clearSignaturePad" class="w-1/3 py-2 border border-slate-300 rounded-lg font-semibold text-slate-600 hover:bg-slate-50 text-xs sm:text-sm">
+            <i class="fa-solid fa-eraser mr-1"></i>ລົບ
+          </button>
+          <button type="button" @click="closeSignaturePad" class="w-1/3 py-2 border border-slate-300 rounded-lg font-semibold text-slate-600 hover:bg-slate-50 text-xs sm:text-sm">
+            ຍົກເລີກ
+          </button>
+          <button type="button" @click="confirmSignaturePad" class="w-1/3 py-2 bg-theme-primary text-white rounded-lg font-semibold shadow hover:opacity-90 text-xs sm:text-sm">
+            <i class="fa-solid fa-check mr-1"></i>ຢືນຢັນ
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS (stacked, auto-dismiss) -->
+    <div class="fixed bottom-5 right-5 z-[110] space-y-2 w-[calc(100%-2.5rem)] sm:w-auto sm:max-w-sm">
+      <transition-group name="toast">
+        <div v-for="t in toasts" :key="t.id"
+             class="px-4 py-3 rounded-xl shadow-2xl flex items-start space-x-2 text-xs sm:text-sm text-white"
+             :class="t.type === 'error' ? 'bg-rose-600' : (t.type === 'warn' ? 'bg-amber-500' : 'bg-slate-900')">
+          <i class="mt-0.5" :class="t.type === 'error' ? 'fa-solid fa-circle-exclamation' : (t.type === 'warn' ? 'fa-solid fa-triangle-exclamation' : 'fa-solid fa-circle-check text-emerald-400')"></i>
+          <span class="flex-1">{{ t.message }}</span>
+          <button @click="dismissToast(t.id)" class="opacity-70 hover:opacity-100"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </transition-group>
+    </div>
+
+    <!-- PWA: ແຈ້ງເຕືອນເມື່ອມີເວີຊັນໃໝ່ (Auto Update) - ສະແດງສະເພາະໂໝດ Firebase Hosting -->
+    <div v-if="swUpdateAvailable" class="fixed bottom-5 left-5 z-[110] no-print max-w-xs sm:max-w-sm">
+      <div class="bg-slate-900 text-white rounded-xl shadow-2xl px-4 py-3 flex items-center space-x-3 text-xs sm:text-sm">
+        <i class="fa-solid fa-arrows-rotate text-theme-primary"></i>
+        <span class="flex-1">ມີເວີຊັນໃໝ່ຂອງແອັບ - ກົດເພື່ອອັບເດດ</span>
+        <button @click="applyPWAUpdate" class="bg-theme-primary px-3 py-1.5 rounded-lg font-semibold hover:opacity-90 whitespace-nowrap">
+          ອັບເດດ
+        </button>
+      </div>
+    </div>
+
+    <!-- CUSTOM CONFIRM MODAL (replaces window.confirm) -->
+    <div v-if="confirmModal.show" class="fixed inset-0 z-[105] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+      <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center">
+        <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center text-xl mx-auto mb-3">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h3 class="text-sm font-bold text-slate-800 mb-2">ຢືນຢັນການດຳເນີນການ</h3>
+        <p class="text-xs text-slate-500 mb-5">{{ confirmModal.message }}</p>
+        <div class="flex space-x-2">
+          <button @click="confirmModal.show = false" class="w-1/2 py-2 border border-slate-300 rounded-lg font-semibold text-slate-600 hover:bg-slate-50 text-xs sm:text-sm">
+            ຍົກເລີກ
+          </button>
+          <button @click="runConfirm" class="w-1/2 py-2 bg-rose-600 text-white rounded-lg font-semibold shadow hover:bg-rose-700 text-xs sm:text-sm">
+            ຢືນຢັນ
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    // ==== ໃສ່ URL ນີ້ ສະເພາະຕອນ Deploy Frontend ແຍກຢູ່ Firebase Hosting (ໂໝດ PWA ເຕັມຮູບແບບ) ====
+    // ຄ່າຕົວຢ່າງ: 'https://script.google.com/macros/s/XXXXXXXX/exec'
+    // ຖ້າເປີດຜ່ານ Apps Script Web App URL ໂດຍກົງ (ພຶດຕິກຳເກົ່າ), ບໍ່ຕ້ອງໃສ່ຄ່ານີ້ - google.script.run ຈະຖືກໃຊ້ແທນ
+    const APPS_SCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbw6cZ8hFb09JxRVO6r3KxzGvIFZENTxyAwoU_-z8Z0-Ppyq1dVE6zAM9zmbRxA23tHl/exec';
+
+    createApp({
+      data() {
+        return {
+          currentTab: 'dashboard',
+          currentTheme: 'theme-blue',
+          showLoginModal: false,
+          showTxModal: false,
+          showCatModal: false,
+          showReceiptViewerModal: false,
+          showChangePasswordModal: false,
+          showForgotPasswordModal: false,
+          showSignatureModal: false,
+          activeReceiptUrl: '',
+
+          // ຮ່ວງເງິນທີ່ຕ້ອງແບ່ງວົງເງິນ 60/40 - ໃຊ້ໃນ template ດ້ວຍ (this.ADMIN_CATEGORY_NAME)
+          ADMIN_CATEGORY_NAME: 'ເງິນບໍລິຫານ',
+          adminBudget: {
+            income_total: 0,
+            academic: { budget: 0, used: 0, remaining: 0 },
+            admin: { budget: 0, used: 0, remaining: 0 }
+          },
+
+          // PWA Install Prompt
+          deferredInstallPrompt: null,
+          canInstallPWA: false,
+          swUpdateAvailable: false, // true = ມີ service worker ເວີຊັນໃໝ່ລໍຖ້າຢູ່ (Auto Update banner)
+
+          // Signature Pad (canvas ບໍ່ຈຳເປັນຕ້ອງ reactive - ເກັບໄວ້ນອກ this.$data ຜ່ານ mounted hooks)
+          sigPadTarget: 'tx', // ຢູ່ນຳ txForm ຫຼື report-context ໃນອະນາຄົດ
+
+          appReady: false,   // false = ຍັງໂຫຼດຂໍ້ມູນເທື່ອຄັ້ງທຳອິດບໍ່ສຳເລັດ
+          isBusy: false,     // true = ກຳລັງລໍຖ້າ server ຕອບກັບ action ຂອງຜູ້ໃຊ້ (login/save/delete...)
+          isSyncing: false,  // true = ກຳລັງ poll ຂໍ້ມູນພື້ນຫຼັງ (ບໍ່ບັງໜ້າຈໍ)
+          isUploadingLogo: false,
+
+          toasts: [],
+          toastSeq: 0,
+          confirmModal: { show: false, message: '', action: null },
+
+          searchQuery: '',
+          dashboardCategoryFilter: 'MINE',
+          filterCategory: 'ALL',
+          filterType: 'ALL',
+          filterStatus: 'ALL',
+          reportStartDate: '',
+          reportEndDate: '',
+          reportCategory: 'ALL',
+
+          currentUser: null,
+          publicSummary: { categories: [], totalIncome: 0, totalExpense: 0, totalBalance: 0 },
+
+          settings: {
+            school_name: 'ໂຮງຮຽນ ມຕ ຫຼັກ90',
+            logo_url: 'https://cdn-icons-png.flaticon.com/512/2997/2997295.png',
+            theme_color: 'theme-blue',
+            google_sheet_url: '',
+            google_drive_folder_id: ''
+          },
+
+          loginForm: { username: '', password: '', remember: true },
+          passForm: { oldPass: '', newPass: '' },
+
+          categories: [],
+          catForm: { id: null, group: '', name: '' },
+
+          txForm: { id: null, type: 'INCOME', date: new Date().toISOString().split('T')[0], category: '', amount: null, description: '', receipt_url: '', receipt_preview: '', file_base64: '', file_name: '', recipient_name: '', signature_url: '', signature_base64: '', budget_type: '' },
+
+          transactions: [],
+
+          pollHandle: null
+        };
+      },
+
+      computed: {
+        allowedCategoriesForUser() {
+          if (!this.currentUser) return [];
+          if (this.currentUser.role === 'director' || this.currentUser.role === 'viewer') return this.categories;
+          if (this.currentUser.role === 'treasury' || this.currentUser.role === 'accounting') {
+            return this.categories.filter(c => c.group === 'ເງິນບໍລິຫານ' || c.group === 'ເງິນຊຸມຊົນ');
+          }
+          if (this.currentUser.role === 'budget_manager') {
+            return this.categories.filter(c => c.name === this.currentUser.category_assigned);
+          }
+          return this.categories;
+        },
+
+        categorySummary() {
+          return this.categories.map(cat => {
+            const inc = this.transactions
+              .filter(t => t.category === cat.name && t.type === 'INCOME' && t.status === 'approved')
+              .reduce((sum, t) => sum + Number(t.amount), 0);
+            const exp = this.transactions
+              .filter(t => t.category === cat.name && t.type === 'EXPENSE' && t.status === 'approved')
+              .reduce((sum, t) => sum + Number(t.amount), 0);
+            return {
+              group: cat.group,
+              name: cat.name,
+              income: inc,
+              expense: exp,
+              balance: inc - exp
+            };
+          });
+        },
+
+        // ຂອບເຂດຮ່ວງເງິນທີ່ຈະສະແດງຢູ່ໜ້າ Dashboard - ຄ່າເລີ່ມຕົ້ນ = ຮ່ວງເງິນຫຼັກຂອງສິດຜູ້ໃຊ້ ('MINE')
+        // ຜູ້ໃຊ້ສາມາດປ່ຽນເປັນ 'ALL' ຫຼືເລືອກຊື່ຮ່ວງເງິນອື່ນສະເພາະໄດ້
+        dashboardScopeCategories() {
+          if (this.dashboardCategoryFilter === 'ALL') return this.categorySummary;
+          if (this.dashboardCategoryFilter === 'MINE') {
+            const allowedNames = this.allowedCategoriesForUser.map(c => c.name);
+            return this.categorySummary.filter(c => allowedNames.includes(c.name));
+          }
+          return this.categorySummary.filter(c => c.name === this.dashboardCategoryFilter);
+        },
+
+        dashboardIncome() {
+          return this.dashboardScopeCategories.reduce((s, c) => s + c.income, 0);
+        },
+
+        dashboardExpense() {
+          return this.dashboardScopeCategories.reduce((s, c) => s + c.expense, 0);
+        },
+
+        dashboardBalance() {
+          return this.dashboardIncome - this.dashboardExpense;
+        },
+
+        totalIncome() {
+          return this.transactions
+            .filter(t => t.type === 'INCOME' && t.status === 'approved')
+            .reduce((sum, t) => sum + Number(t.amount), 0);
+        },
+
+        totalExpense() {
+          return this.transactions
+            .filter(t => t.type === 'EXPENSE' && t.status === 'approved')
+            .reduce((sum, t) => sum + Number(t.amount), 0);
+        },
+
+        totalBalance() {
+          return this.totalIncome - this.totalExpense;
+        },
+
+        pendingCount() {
+          return this.transactions.filter(t => t.status === 'pending').length;
+        },
+
+        filteredTransactions() {
+          return this.transactions.filter(tx => {
+            const matchesQuery = !this.searchQuery ||
+              (tx.description || '').toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              (tx.created_by || '').toLowerCase().includes(this.searchQuery.toLowerCase());
+            const matchesCat = this.filterCategory === 'ALL' || tx.category === this.filterCategory;
+            const matchesType = this.filterType === 'ALL' || tx.type === this.filterType;
+            const matchesStatus = this.filterStatus === 'ALL' || tx.status === this.filterStatus;
+            return matchesQuery && matchesCat && matchesType && matchesStatus;
+          });
+        },
+
+        groupedCategories() {
+          const groups = {};
+          this.categories.forEach(c => {
+            if (!groups[c.group]) groups[c.group] = [];
+            groups[c.group].push(c);
+          });
+          return groups;
+        },
+
+        reportTransactions() {
+          return this.transactions.filter(tx => {
+            if (tx.status !== 'approved') return false;
+            if (this.reportCategory !== 'ALL' && tx.category !== this.reportCategory) return false;
+            if (this.reportStartDate && tx.date < this.reportStartDate) return false;
+            if (this.reportEndDate && tx.date > this.reportEndDate) return false;
+            return true;
+          });
+        },
+
+        reportTotalIncome() {
+          return this.reportTransactions.filter(t => t.type === 'INCOME').reduce((s, t) => s + Number(t.amount), 0);
+        },
+
+        reportTotalExpense() {
+          return this.reportTransactions.filter(t => t.type === 'EXPENSE').reduce((s, t) => s + Number(t.amount), 0);
+        }
+      },
+
+      mounted() {
+        const savedTheme = localStorage.getItem('lak90_theme');
+        if (savedTheme) this.setTheme(savedTheme);
+
+        // ພະຍາຍາມກູ້ Session ຜູ້ໃຊ້ (ບໍ່ເກັບລະຫັດຜ່ານ), ແລ້ວໂຫຼດຂໍ້ມູນຈິງຈາກ Google Sheet
+        const savedUser = localStorage.getItem('lak90_user');
+        if (savedUser) {
+          try { this.currentUser = JSON.parse(savedUser); } catch (e) { this.currentUser = null; }
+        }
+        this.loadAppData(true);
+        this.setupPWAInstallPrompt();
+
+        // ຮັບຟັງ event ຈາກ pwaBootstrap() ຕອນທ້າຍໄຟລ໌ (ໂໝດ Firebase Hosting) ວ່າມີ Service Worker ເວີຊັນໃໝ່
+        window.addEventListener('sw-update-available', (e) => {
+          this._waitingWorker = (e.detail && e.detail.worker) || null;
+          this.swUpdateAvailable = true;
+        });
+      },
+
+      beforeUnmount() {
+        if (this.pollHandle) clearInterval(this.pollHandle);
+      },
+
+      methods: {
+        // ---------- UTIL ----------
+        formatNumber(num) {
+          if (num === null || num === undefined || isNaN(num)) return '0';
+          return Number(num).toLocaleString('en-US');
+        },
+
+        // ປ່ຽນຕົວເລກເປັນຕົວໜັງສືລາວ (ສຳລັບຍອດເງິນໃນລາຍງານ) ເຊັ່ນ 15000000 -> "ສິບຫ້າລ້ານກີບຖ້ວນ"
+        numberToLaoText(num) {
+          if (num === null || num === undefined || isNaN(num)) return 'ສູນກີບຖ້ວນ';
+          let n = Math.round(Number(num));
+          if (n === 0) return 'ສູນກີບຖ້ວນ';
+
+          const negative = n < 0;
+          n = Math.abs(n);
+
+          const digitWords = ['', 'ໜຶ່ງ', 'ສອງ', 'ສາມ', 'ສີ່', 'ຫ້າ', 'ຫົກ', 'ເຈັດ', 'ແປດ', 'ເກົ້າ'];
+          const placeWords = ['', 'ສິບ', 'ຮ້ອຍ', 'ພັນ', 'ໝື່ນ', 'ແສນ'];
+
+          // ປ່ຽນ 6 ຫຼັກ (ນ້ອຍກວ່າລ້ານ) ໃຫ້ເປັນຕົວໜັງສື
+          const sixDigitsToText = (chunk) => {
+            let text = '';
+            const s = String(chunk).padStart(6, '0');
+            for (let i = 0; i < 6; i++) {
+              const digit = parseInt(s[i], 10);
+              const place = 5 - i; // 5=ແສນ,4=ໝື່ນ,3=ພັນ,2=ຮ້ອຍ,1=ສິບ,0=ຫົວໜ່ວຍ
+              if (digit === 0) continue;
+              if (place === 1) { // ຫຼັກສິບ
+                if (digit === 1) { text += 'ສິບ'; }
+                else if (digit === 2) { text += 'ຊາວ'; }
+                else { text += digitWords[digit] + 'ສິບ'; }
+              } else if (place === 0) { // ຫຼັກຫົວໜ່ວຍ
+                if (digit === 1 && chunk >= 10) { text += 'ເອັດ'; }
+                else { text += digitWords[digit]; }
+              } else {
+                text += digitWords[digit] + placeWords[place];
+              }
+            }
+            return text;
+          };
+
+          const groups = [];
+          let remain = n;
+          while (remain > 0) {
+            groups.push(remain % 1000000);
+            remain = Math.floor(remain / 1000000);
+          }
+
+          let result = '';
+          for (let i = groups.length - 1; i >= 0; i--) {
+            if (groups[i] === 0) continue;
+            result += sixDigitsToText(groups[i]);
+            if (i > 0) result += 'ລ້ານ';
+          }
+
+          return (negative ? 'ຕິດລົບ ' : '') + result + 'ກີບຖ້ວນ';
+        },
+
+        showToast(msg, type = 'success') {
+          const id = ++this.toastSeq;
+          this.toasts.push({ id, message: msg, type });
+          setTimeout(() => this.dismissToast(id), 4000);
+        },
+
+        dismissToast(id) {
+          this.toasts = this.toasts.filter(t => t.id !== id);
+        },
+
+        askConfirm(message, action) {
+          this.confirmModal = { show: true, message, action };
+        },
+
+        runConfirm() {
+          const action = this.confirmModal.action;
+          this.confirmModal.show = false;
+          if (typeof action === 'function') action();
+        },
+
+        handleLogoError(e) {
+          e.target.src = 'https://cdn-icons-png.flaticon.com/512/2997/2997295.png';
+        },
+
+        setTheme(themeName) {
+          this.currentTheme = themeName;
+          this.settings.theme_color = themeName;
+          const container = document.getElementById('app-container');
+          container.className = container.className.replace(/theme-\w+/g, themeName);
+          localStorage.setItem('lak90_theme', themeName);
+        },
+
+        canAddIncome() {
+          if (!this.currentUser) return false;
+          return ['director', 'treasury', 'budget_manager'].includes(this.currentUser.role);
+        },
+
+        canAddExpense() {
+          if (!this.currentUser) return false;
+          return ['director', 'accounting', 'budget_manager'].includes(this.currentUser.role);
+        },
+
+        canEditOrDelete(tx) {
+          if (!this.currentUser) return false;
+          if (this.currentUser.role === 'director') return true;
+          return tx.created_by === this.currentUser.username && tx.status === 'pending';
+        },
+
+        getRoleLabel(role) {
+          const map = {
+            director: 'ຜູ້ອຳນວຍການ',
+            treasury: 'ຄັງເງິນ',
+            accounting: 'ບັນຊີ',
+            budget_manager: 'ຜູ້ຮັບຜິດຊອບຮ່ວງເງິນ',
+            viewer: 'ຜູ້ເບິ່ງທົ່ວໄປ'
+          };
+          return map[role] || role;
+        },
+
+        getRoleBadgeClass(role) {
+          const map = {
+            director: 'bg-purple-100 text-purple-800 border border-purple-200',
+            treasury: 'bg-emerald-100 text-emerald-800 border border-emerald-200',
+            accounting: 'bg-blue-100 text-blue-800 border border-blue-200',
+            budget_manager: 'bg-amber-100 text-amber-800 border border-amber-200',
+            viewer: 'bg-slate-100 text-slate-800 border border-slate-200'
+          };
+          return map[role] || 'bg-slate-100 text-slate-800';
+        },
+
+        // ---------- SERVER BRIDGE ----------
+        // google.script.run ໃຊ້ໄດ້ພຽງແຕ່ຕອນໜ້າເວັບຖືກເປີດຜ່ານ Apps Script Web App URL ຈິງເທົ່ານັ້ນ
+        // (ຖ້າເປີດເປັນໄຟລ໌ index.html ໂດຍກົງ ຫຼື preview ໃນ browser ທຳມະດາ, google.script.run ຈະບໍ່ມີ)
+        hasServerBridge() {
+          return typeof google !== 'undefined' && google.script && google.script.run;
+        },
+
+        // ໂໝດ Firebase Hosting: ບໍ່ມີ google.script.run ແຕ່ຕັ້ງຄ່າ APPS_SCRIPT_API_URL ໄວ້ -> ໃຊ້ fetch() ແທນ
+        hasFetchBridge() {
+          return !this.hasServerBridge() && !!APPS_SCRIPT_API_URL;
+        },
+
+        callServer(fnName, ...args) {
+          if (this.hasServerBridge()) {
+            return new Promise((resolve, reject) => {
+              google.script.run
+                .withSuccessHandler(resolve)
+                .withFailureHandler(reject)
+                [fnName](...args);
+            });
+          }
+
+          if (this.hasFetchBridge()) {
+            return fetch(APPS_SCRIPT_API_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // ຫຼີກລ້ຽງ CORS preflight ຂອງ Apps Script
+              body: JSON.stringify({ fn: fnName, args: args })
+            })
+              .then(r => r.json())
+              .catch(err => { throw new Error('ເຊື່ອມຕໍ່ API ບໍ່ໄດ້: ' + err.message); });
+          }
+
+          return Promise.reject(new Error('ບໍ່ພົບການເຊື່ອມຕໍ່ Google Apps Script (google.script.run) - ກະລຸນາເປີດແອັບຜ່ານ Web App URL ທີ່ Deploy ແລ້ວ, ຫຼື ຕັ້ງຄ່າ APPS_SCRIPT_API_URL ສຳລັບໂໝດ Firebase.'));
+        },
+
+        // ---------- DATA LOADING ----------
+        async loadAppData(isInitial) {
+          // ຖ້າຍັງບໍ່ Login, ໂຫຼດແຕ່ຂໍ້ມູນສະຫຼຸບສາທາລະນະ (2 ຮ່ວງເງິນ) ແທນ ບໍ່ດຶງລາຍການທຸລະກຳລາຍໂຕ
+          if (!this.currentUser) {
+            return this.loadPublicSummary(isInitial);
+          }
+
+          if (isInitial) this.appReady = false; else this.isSyncing = true;
+          try {
+            const res = await this.callServer('getAppData');
+            if (res && res.success) {
+              this.categories = res.categories || [];
+              this.settings = Object.assign({}, this.settings, res.settings || {});
+              this.transactions = res.transactions || [];
+              if (res.adminBudget) this.adminBudget = res.adminBudget;
+              this.setTheme(this.settings.theme_color || 'theme-blue');
+            } else if (isInitial) {
+              this.showToast((res && res.message) || 'ໂຫຼດຂໍ້ມູນບໍ່ສຳເລັດ', 'error');
+            }
+          } catch (err) {
+            if (isInitial) this.showToast('ເຊື່ອມຕໍ່ Server ບໍ່ໄດ້: ' + err.message, 'error');
+            // ຖ້າ error ຕອນ poll ພື້ນຫຼັງ, ບໍ່ລົບກວນຜູ້ໃຊ້ດ້ວຍ toast ຊ້ຳໆ
+          } finally {
+            if (isInitial) {
+              this.appReady = true;
+              this.startPolling();
+            } else {
+              this.isSyncing = false;
+            }
+          }
+        },
+
+        // ຂໍ້ມູນສະຫຼຸບສາທາລະນະ ສຳລັບຄົນທີ່ຍັງບໍ່ Login (ສະເພາະ ເງິນບໍລິຫານ + ເງິນຊຸມຊົນ)
+        async loadPublicSummary(isInitial) {
+          if (isInitial) this.appReady = false; else this.isSyncing = true;
+          try {
+            const res = await this.callServer('getPublicSummary');
+            if (res && res.success) {
+              this.publicSummary = res;
+              this.settings = Object.assign({}, this.settings, res.settings || {});
+              this.setTheme(this.settings.theme_color || 'theme-blue');
+            } else if (isInitial) {
+              this.showToast((res && res.message) || 'ໂຫຼດຂໍ້ມູນບໍ່ສຳເລັດ', 'error');
+            }
+          } catch (err) {
+            if (isInitial) this.showToast('ເຊື່ອມຕໍ່ Server ບໍ່ໄດ້: ' + err.message, 'error');
+          } finally {
+            if (isInitial) {
+              this.appReady = true;
+              this.startPolling();
+            } else {
+              this.isSyncing = false;
+            }
+          }
+        },
+
+        // Auto Polling ທຸກໆ 10 ວິນາທີ ເພື່ອຊິງຄ໌ຂໍ້ມູນກັບ Google Sheet ແບບບໍ່ຕ້ອງກົດ refresh
+        startPolling() {
+          if (this.pollHandle) clearInterval(this.pollHandle);
+          this.pollHandle = setInterval(() => {
+            this.loadAppData(false);
+          }, 10000);
+        },
+
+        // ---------- AUTH ----------
+        async handleLogin() {
+          if (this.isBusy) return;
+          this.isBusy = true;
+          try {
+            const res = await this.callServer('loginUser', this.loginForm.username, this.loginForm.password);
+            if (res && res.success) {
+              this.currentUser = res.user;
+              if (this.loginForm.remember) {
+                localStorage.setItem('lak90_user', JSON.stringify(res.user));
+              }
+              this.showLoginModal = false;
+              this.loginForm.password = '';
+              this.showToast(`ເຂົ້າສູ່ລະບົບສຳເລັດ! ຍິນດີຕ້ອນຮັບ ${res.user.fullname}`);
+              await this.loadAppData(true);
+            } else {
+              this.showToast((res && res.message) || 'ຊື່ຜູ້ໃຊ້ ຫຼື ລະຫັດຜ່ານ ບໍ່ຖືກຕ້ອງ!', 'error');
+            }
+          } catch (err) {
+            this.showToast('ຜິດພາດ: ' + err.message, 'error');
+          } finally {
+            this.isBusy = false;
+          }
+        },
+
+        logout() {
+          this.currentUser = null;
+          localStorage.removeItem('lak90_user');
+          // ລ້າງຂໍ້ມູນລະອຽດອອກຈາກໜ່ວຍຄວາມຈຳ browser ຫຼັງ logout
+          this.transactions = [];
+          this.categories = [];
+          this.currentTab = 'dashboard';
+          if (this.pollHandle) clearInterval(this.pollHandle);
+          this.showToast('ອອກຈາກລະບົບສຳເລັດແລ້ວ');
+          this.loadAppData(true);
+        },
+
+        async handleChangePassword() {
+          if (this.isBusy) return;
+          this.isBusy = true;
+          try {
+            const res = await this.callServer('changePassword', this.currentUser.id, this.passForm.oldPass, this.passForm.newPass);
+            if (res && res.success) {
+              this.showChangePasswordModal = false;
+              this.passForm = { oldPass: '', newPass: '' };
+              this.showToast('ປ່ຽນລະຫັດຜ່ານສຳເລັດແລ້ວ!');
+            } else {
+              this.showToast((res && res.message) || 'ປ່ຽນລະຫັດຜ່ານບໍ່ສຳເລັດ', 'error');
+            }
+          } catch (err) {
+            this.showToast('ຜິດພາດ: ' + err.message, 'error');
+          } finally {
+            this.isBusy = false;
+          }
+        },
+
+        // ---------- TRANSACTIONS ----------
+        openNewTransactionModal(type) {
+          const allowed = this.allowedCategoriesForUser;
+          this.txForm = {
+            id: null,
+            type: type,
+            date: new Date().toISOString().split('T')[0],
+            category: allowed.length > 0 ? allowed[0].name : '',
+            amount: null,
+            description: '',
+            receipt_url: '',
+            receipt_preview: '',
+            file_base64: '',
+            file_name: '',
+            recipient_name: '',
+            signature_url: '',
+            signature_base64: '',
+            budget_type: ''
+          };
+          this.showTxModal = true;
+        },
+
+        openEditTransactionModal(tx) {
+          this.txForm = { ...tx, receipt_preview: tx.receipt_url, file_base64: '', file_name: '', signature_base64: '' };
+          this.showTxModal = true;
+        },
+
+        handleFileUpload(e) {
+          const file = e.target.files[0];
+          if (file) {
+            this.txForm.file_name = file.name;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+              this.txForm.receipt_preview = event.target.result;
+              this.txForm.file_base64 = event.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        },
+
+        // ອັບໂຫຼດໂລໂກ້ໂຮງຮຽນ - ໃຊ້ backend function ດຽວກັນກັບການອັບໂຫຼດໃບບິນ (uploadToDrive)
+        async handleLogoUpload(e) {
+          const file = e.target.files[0];
+          if (!file) return;
+
+          if (!file.type.startsWith('image/')) {
+            this.showToast('ກະລຸນາເລືອກໄຟລ໌ຮູບພາບເທົ່ານັ້ນ (jpg, png, ...)', 'error');
+            e.target.value = '';
+            return;
+          }
+          if (file.size > 3 * 1024 * 1024) {
+            this.showToast('ຂະໜາດຮູບໃຫຍ່ເກີນໄປ (ຈຳກັດ 3MB)', 'error');
+            e.target.value = '';
+            return;
+          }
+
+          const reader = new FileReader();
+          reader.onload = async (event) => {
+            const base64 = event.target.result;
+            this.isUploadingLogo = true;
+            try {
+              const url = await this.callServer('uploadToDrive', base64, file.name);
+              if (url) {
+                this.settings.logo_url = url;
+                this.showToast('ອັບໂຫຼດໂລໂກ້ສຳເລັດ! ກົດ "ບັນທຶກການຕັ້ງຄ່າ" ເພື່ອບັນທຶກຖາວອນ');
+              } else {
+                this.showToast('ອັບໂຫຼດໂລໂກ້ບໍ່ສຳເລັດ', 'error');
+              }
+            } catch (err) {
+              this.showToast('ຜິດພາດ: ' + err.message, 'error');
+            } finally {
+              this.isUploadingLogo = false;
+              e.target.value = '';
+            }
+          };
+          reader.readAsDataURL(file);
+        },
+
+        async saveTransaction() {
+          if (this.isBusy) return;
+          this.isBusy = true;
+          try {
+            const res = await this.callServer('saveTransaction', this.txForm, this.currentUser);
+            if (res && res.success) {
+              this.showTxModal = false;
+              this.showToast(res.message || 'ບັນທຶກລາຍການສຳເລັດ!');
+              await this.loadAppData(false);
+            } else {
+              this.showToast((res && res.message) || 'ບັນທຶກລາຍການບໍ່ສຳເລັດ', 'error');
+            }
+          } catch (err) {
+            this.showToast('ຜິດພາດ: ' + err.message, 'error');
+          } finally {
+            this.isBusy = false;
+          }
+        },
+
+        async approveTx(txId) {
+          try {
+            const res = await this.callServer('approveTransaction', txId);
+            if (res && res.success) {
+              this.showToast(res.message || 'ອະນຸມັດລາຍການສຳເລັດແລ້ວ!');
+              await this.loadAppData(false);
+            } else {
+              this.showToast((res && res.message) || 'ອະນຸມັດບໍ່ສຳເລັດ', 'error');
+            }
+          } catch (err) {
+            this.showToast('ຜິດພາດ: ' + err.message, 'error');
+          }
+        },
+
+        confirmDeleteTx(txId) {
+          this.askConfirm('ທ່ານຕັ້ງໃຈຈະລົບລາຍການນີ້ແທ້ບໍ? ການດຳເນີນການນີ້ບໍ່ສາມາດກູ້ຄືນໄດ້.', async () => {
+            try {
+              const res = await this.callServer('deleteTransaction', txId);
+              if (res && res.success) {
+                // ອັບເດດໜ້າຈໍທັນທີ (optimistic) ແລ້ວຄ່ອຍຢືນຢັນຈາກ server
+                this.transactions = this.transactions.filter(t => t.id !== txId);
+                this.showToast(res.message || 'ລົບລາຍການສຳເລັດແລ້ວ!');
+                await this.loadAppData(false);
+              } else {
+                this.showToast((res && res.message) || 'ລົບລາຍການບໍ່ສຳເລັດ', 'error');
+              }
+            } catch (err) {
+              this.showToast('ຜິດພາດ: ' + err.message, 'error');
+            }
+          });
+        },
+
+        openReceiptViewer(url) {
+          this.activeReceiptUrl = url;
+          this.showReceiptViewerModal = true;
+        },
+
+        // ---------- CATEGORIES ----------
+        openCategoryModal(cat = null) {
+          this.catForm = cat ? { id: cat.id, group: cat.group, name: cat.name } : { id: null, group: '', name: '' };
+          this.showCatModal = true;
+        },
+
+        async saveCategoryForm() {
+          if (this.isBusy) return;
+          this.isBusy = true;
+          try {
+            const res = await this.callServer('saveCategory', this.catForm);
+            if (res && res.success) {
+              this.showCatModal = false;
+              this.showToast(res.message || 'ບັນທຶກຮ່ວງເງິນສຳເລັດ!');
+              await this.loadAppData(false);
+            } else {
+              this.showToast((res && res.message) || 'ບັນທຶກຮ່ວງເງິນບໍ່ສຳເລັດ', 'error');
+            }
+          } catch (err) {
+            this.showToast('ຜິດພາດ: ' + err.message, 'error');
+          } finally {
+            this.isBusy = false;
+          }
+        },
+
+        confirmDeleteCategory(catId) {
+          this.askConfirm('ທ່ານຕ້ອງການລົບຮ່ວງເງິນນີ້ບໍ? ລາຍການທຸລະກຳເກົ່າທີ່ໃຊ້ຮ່ວງເງິນນີ້ຈະບໍ່ຖືກລົບ.', async () => {
+            try {
+              const res = await this.callServer('deleteCategory', catId);
+              if (res && res.success) {
+                this.categories = this.categories.filter(c => c.id !== catId);
+                this.showToast(res.message || 'ລົບຮ່ວງເງິນສຳເລັດແລ້ວ!');
+                await this.loadAppData(false);
+              } else {
+                this.showToast((res && res.message) || 'ລົບຮ່ວງເງິນບໍ່ສຳເລັດ', 'error');
+              }
+            } catch (err) {
+              this.showToast('ຜິດພາດ: ' + err.message, 'error');
+            }
+          });
+        },
+
+        // ---------- SETTINGS ----------
+        async saveSystemSettings() {
+          if (this.isBusy) return;
+          this.isBusy = true;
+          try {
+            const res = await this.callServer('saveSettings', this.settings);
+            if (res && res.success) {
+              this.showToast(res.message || 'ບັນທຶກການຕັ້ງຄ່າສຳເລັດແລ້ວ!');
+              await this.loadAppData(false);
+            } else {
+              this.showToast((res && res.message) || 'ບັນທຶກການຕັ້ງຄ່າບໍ່ສຳເລັດ', 'error');
+            }
+          } catch (err) {
+            this.showToast('ຜິດພາດ: ' + err.message, 'error');
+          } finally {
+            this.isBusy = false;
+          }
+        },
+
+        // ---------- ADMIN BUDGET (60/40) ----------
+        budgetUsedPercent(bucket) {
+          if (!bucket || !bucket.budget || bucket.budget <= 0) return 0;
+          const pct = (bucket.used / bucket.budget) * 100;
+          return Math.max(0, Math.min(100, Math.round(pct)));
+        },
+
+        // ---------- SIGNATURE PAD ----------
+        // ໃຊ້ Pointer Events (ຮອງຮັບ Mouse + Touch + Pen ໃນ API ດຽວ) ເປັນຫຼັກ ເພື່ອໃຫ້ເຊັນໄດ້ຈິງ
+        // ໃນ Android / iPhone / Tablet / Desktop, ພ້ອມ fallback Touch/Mouse ສຳລັບ browser ເກົ່າ
+        openSignaturePad(target) {
+          this.sigPadTarget = target || 'tx';
+          this.showSignatureModal = true;
+          this.$nextTick(() => {
+            // ລໍຖ້າ 2 animation frame ໃຫ້ modal render ຂະໜາດແທ້ກ່ອນວັດ canvas
+            // (ຖ້າວັດໄວເກີນໄປ getBoundingClientRect() ອາດໄດ້ 0x0 ໃນບາງມືຖື -> ເຊັນບໍ່ໄດ້ເລີຍ)
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => this.initSignatureCanvas());
+            });
+          });
+        },
+
+        initSignatureCanvas() {
+          const canvas = this.$refs.sigCanvas;
+          if (!canvas) return;
+
+          // ຍົກເລີກ event listener ຊຸດເກົ່າທັງໝົດ (ກັນຊ້ຳກໍລະນີເປີດ modal ຫຼາຍຄັ້ງ) ດ້ວຍ AbortController
+          if (this._sigAbortCtrl) {
+            try { this._sigAbortCtrl.abort(); } catch (e) {}
+          }
+          const abortCtrl = new AbortController();
+          this._sigAbortCtrl = abortCtrl;
+          const evtOpts = { signal: abortCtrl.signal };
+
+          this._sigDrawing = false;
+          this._sigHasStroke = false;
+
+          // ຮອງຮັບ High-DPI (Retina) ແລະ ປັບຂະໜາດຄືນໄດ້ ຖ້າໝູນຈໍ/ປ່ຽນຂະໜາດຈໍ ໂດຍບໍ່ລົບລາຍເຊັນເກົ່າ
+          const resizeCanvas = () => {
+            const ratio = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            const cssWidth = rect.width || (canvas.parentElement ? canvas.parentElement.clientWidth : 300) || 300;
+            const cssHeight = rect.height || 220;
+
+            let snapshot = null;
+            if (canvas.width > 0 && canvas.height > 0 && this._sigHasStroke) {
+              try { snapshot = canvas.toDataURL('image/png'); } catch (e) { snapshot = null; }
+            }
+
+            canvas.width = Math.max(1, Math.round(cssWidth * ratio));
+            canvas.height = Math.max(1, Math.round(cssHeight * ratio));
+
+            const ctx = canvas.getContext('2d');
+            ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+            ctx.lineWidth = 2.4;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.strokeStyle = '#000000'; // ນ້ຳໝຶກສີດຳ
+            this._sigCtx = ctx;
+
+            if (snapshot) {
+              const img = new Image();
+              img.onload = () => { try { ctx.drawImage(img, 0, 0, cssWidth, cssHeight); } catch (e) {} };
+              img.src = snapshot;
+            }
+          };
+
+          resizeCanvas();
+          canvas.style.touchAction = 'none';
+          canvas.style.userSelect = 'none';
+          canvas.style.webkitUserSelect = 'none';
+
+          const getPos = (clientX, clientY) => {
+            const r = canvas.getBoundingClientRect();
+            return { x: clientX - r.left, y: clientY - r.top };
+          };
+
+          const startAt = (clientX, clientY) => {
+            this._sigDrawing = true;
+            this._sigHasStroke = true;
+            const p = getPos(clientX, clientY);
+            this._sigCtx.beginPath();
+            this._sigCtx.moveTo(p.x, p.y);
+            // ແຕ້ມຈຸດນ້ອຍໆທັນທີ ເພື່ອໃຫ້ "ແຕະຈຸດດຽວ" ກໍ່ເຫັນຮ່ອງຮອຍ (ບໍ່ຕ້ອງລາກ)
+            this._sigCtx.lineTo(p.x + 0.01, p.y + 0.01);
+            this._sigCtx.stroke();
+          };
+          const moveAt = (clientX, clientY) => {
+            if (!this._sigDrawing) return;
+            const p = getPos(clientX, clientY);
+            this._sigCtx.lineTo(p.x, p.y);
+            this._sigCtx.stroke();
+          };
+          const endStroke = () => {
+            if (!this._sigDrawing) return;
+            this._sigDrawing = false;
+            try { this._sigCtx.closePath(); } catch (e) {}
+          };
+
+          if (window.PointerEvent) {
+            // ---- Pointer Events: ໃຊ້ໄດ້ກັບ Mouse, Touch (Android/iOS), ແລະ Pen ພ້ອມກັນ ----
+            const onPointerDown = (e) => {
+              e.preventDefault();
+              if (canvas.setPointerCapture) {
+                try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+              }
+              startAt(e.clientX, e.clientY);
+            };
+            const onPointerMove = (e) => {
+              if (!this._sigDrawing) return;
+              e.preventDefault();
+              moveAt(e.clientX, e.clientY);
+            };
+            const onPointerUp = () => endStroke();
+            canvas.addEventListener('pointerdown', onPointerDown, evtOpts);
+            canvas.addEventListener('pointermove', onPointerMove, evtOpts);
+            canvas.addEventListener('pointerup', onPointerUp, evtOpts);
+            canvas.addEventListener('pointercancel', onPointerUp, evtOpts);
+            canvas.addEventListener('pointerleave', onPointerUp, evtOpts);
+          } else {
+            // ---- Fallback: ບໍ່ຮອງຮັບ Pointer Events (browser ເກົ່າຫຼາຍໆ) ----
+            const onMouseDown = (e) => { e.preventDefault(); startAt(e.clientX, e.clientY); };
+            const onMouseMove = (e) => { if (!this._sigDrawing) return; e.preventDefault(); moveAt(e.clientX, e.clientY); };
+            const onMouseUp = () => endStroke();
+            const onTouchStart = (e) => {
+              e.preventDefault();
+              const t = e.touches && e.touches[0];
+              if (t) startAt(t.clientX, t.clientY);
+            };
+            const onTouchMove = (e) => {
+              if (!this._sigDrawing) return;
+              e.preventDefault();
+              const t = e.touches && e.touches[0];
+              if (t) moveAt(t.clientX, t.clientY);
+            };
+            const onTouchEnd = () => endStroke();
+
+            canvas.addEventListener('mousedown', onMouseDown, evtOpts);
+            canvas.addEventListener('mousemove', onMouseMove, evtOpts);
+            window.addEventListener('mouseup', onMouseUp, evtOpts);
+            canvas.addEventListener('touchstart', onTouchStart, { ...evtOpts, passive: false });
+            canvas.addEventListener('touchmove', onTouchMove, { ...evtOpts, passive: false });
+            canvas.addEventListener('touchend', onTouchEnd, evtOpts);
+            canvas.addEventListener('touchcancel', onTouchEnd, evtOpts);
+          }
+
+          // ຖ້າໝູນຈໍ ຫຼື ປ່ຽນຂະໜາດ window ຂະນະ modal ເປີດຢູ່ -> ປັບຂະໜາດ canvas ໃໝ່ ບໍ່ໃຫ້ເບີກເບ້ຍ
+          window.addEventListener('resize', resizeCanvas, evtOpts);
+          window.addEventListener('orientationchange', resizeCanvas, evtOpts);
+        },
+
+        clearSignaturePad() {
+          const canvas = this.$refs.sigCanvas;
+          if (!canvas || !this._sigCtx) return;
+          this._sigCtx.clearRect(0, 0, canvas.width, canvas.height);
+          this._sigHasStroke = false;
+        },
+
+        closeSignaturePad() {
+          if (this._sigAbortCtrl) {
+            try { this._sigAbortCtrl.abort(); } catch (e) {}
+            this._sigAbortCtrl = null;
+          }
+          this.showSignatureModal = false;
+        },
+
+        confirmSignaturePad() {
+          const canvas = this.$refs.sigCanvas;
+          if (!canvas || !this._sigHasStroke) {
+            this.showToast('ກະລຸນາເຊັນລາຍເຊັນກ່ອນ', 'warn');
+            return;
+          }
+          const dataUrl = canvas.toDataURL('image/png');
+          if (this.sigPadTarget === 'tx') {
+            this.txForm.signature_base64 = dataUrl;
+          }
+          this.closeSignaturePad();
+          this.showToast('ບັນທຶກລາຍເຊັນສຳເລັດ! ຈະຖືກອັບໂຫຼດຂຶ້ນ Google Drive ຕອນກົດ "ບັນທຶກ"');
+        },
+
+        // ---------- EXPORT .XLSX (ຝັ່ງ browser ດ້ວຍ SheetJS - ໄຟລ໌ແກ້ໄຂຕໍ່ໄດ້) ----------
+        exportToExcel() {
+          if (typeof XLSX === 'undefined') {
+            this.showToast('ບໍ່ພົບໄລບຣາຣີ SheetJS - ກະລຸນາເຊື່ອມຕໍ່ອິນເຕີເນັດ ແລ້ວລອງໃໝ່', 'error');
+            return;
+          }
+          const rows = this.reportTransactions.map(tx => ({
+            'ວັນທີ': tx.date,
+            'ປະເພດ': tx.type === 'INCOME' ? 'ລາຍຮັບ' : 'ລາຍຈ່າຍ',
+            'ຮ່ວງເງິນ': tx.category,
+            'ເນື້ອໃນລາຍການ': tx.description,
+            'ລາຍຮັບ (ກີບ)': tx.type === 'INCOME' ? tx.amount : '',
+            'ລາຍຈ່າຍ (ກີບ)': tx.type === 'EXPENSE' ? tx.amount : '',
+            'ຜູ້ບັນທຶກ': tx.created_by,
+            'ຜູ້ຮັບເງິນ': tx.recipient_name || '',
+            'ລິ້ງລາຍເຊັນ': tx.signature_url || '',
+            'ລິ້ງໃບບິນ': tx.receipt_url || '',
+            'ສະຖານະ': tx.status === 'approved' ? 'ອະນຸມັດແລ້ວ' : 'ລໍຖ້າອະນຸມັດ'
+          }));
+
+          const summaryRows = [
+            { 'ລາຍການ': 'ລາຍຮັບທັງໝົດ', 'ຈຳນວນ (ກີບ)': this.reportTotalIncome },
+            { 'ລາຍການ': 'ລາຍຈ່າຍທັງໝົດ', 'ຈຳນວນ (ກີບ)': this.reportTotalExpense },
+            { 'ລາຍການ': 'ຍອດເຫຼືອສຸທິ', 'ຈຳນວນ (ກີບ)': this.reportTotalIncome - this.reportTotalExpense }
+          ];
+
+          const wb = XLSX.utils.book_new();
+          const wsData = XLSX.utils.json_to_sheet(rows.length ? rows : [{ 'ຂໍ້ມູນ': 'ບໍ່ມີຂໍ້ມູນໃນໄລຍະທີ່ເລືອກ' }]);
+          const wsSummary = XLSX.utils.json_to_sheet(summaryRows);
+          XLSX.utils.book_append_sheet(wb, wsSummary, 'ສະຫຼຸບ');
+          XLSX.utils.book_append_sheet(wb, wsData, 'ລາຍລະອຽດ');
+
+          const fileName = 'ລາຍງານການເງິນ_' + (this.reportStartDate || 'ທັງໝົດ') + '_ຫາ_' + (this.reportEndDate || 'ປັດຈຸບັນ') + '.xlsx';
+          XLSX.writeFile(wb, fileName);
+          this.showToast('Export ໄຟລ໌ Excel ສຳເລັດແລ້ວ! (ແກ້ໄຂຕໍ່ໄດ້)');
+        },
+
+        // ---------- PWA: INSTALL APP ----------
+        setupPWAInstallPrompt() {
+          window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            this.deferredInstallPrompt = e;
+            this.canInstallPWA = true;
+          });
+          window.addEventListener('appinstalled', () => {
+            this.canInstallPWA = false;
+            this.deferredInstallPrompt = null;
+            this.showToast('ຕິດຕັ້ງແອັບສຳເລັດແລ້ວ! ເປີດໄດ້ຈາກໜ້າຈໍຫຼັກ');
+          });
+        },
+
+        async installPWA() {
+          if (!this.deferredInstallPrompt) {
+            this.showToast('ອຸປະກອນ/browser ນີ້ບໍ່ຮອງຮັບການຕິດຕັ້ງອັດຕະໂນມັດ - ໃຊ້ເມນູ "Add to Home Screen" ຂອງ browser ແທນ', 'warn');
+            return;
+          }
+          this.deferredInstallPrompt.prompt();
+          await this.deferredInstallPrompt.userChoice;
+          this.deferredInstallPrompt = null;
+          this.canInstallPWA = false;
+        },
+
+        // ກົດປຸ່ມ "ອັບເດດ" ໃນ banner -> ບອກ Service Worker ໃໝ່ໃຫ້ເປີດໃຊ້ງານທັນທີ (skipWaiting)
+        // ຫຼັງຈາກນັ້ນ 'controllerchange' (ລົງທະບຽນໄວ້ໃນ pwaBootstrap()) ຈະ reload ໜ້າເວັບໃຫ້ອັດຕະໂນມັດ
+        applyPWAUpdate() {
+          this.swUpdateAvailable = false;
+          if (this._waitingWorker) {
+            this._waitingWorker.postMessage('SKIP_WAITING');
+          } else {
+            window.location.reload();
+          }
+        },
+
+        // ---------- REPORT / PWA ----------
+        triggerPrint() {
+          window.print();
+        }
+      }
+    }).mount('#app');
+
+    // =======================================================
+    // PWA BOOTSTRAP (ໂໝດ Firebase Hosting ເທົ່ານັ້ນ)
+    // ກວດວ່າ ໜ້ານີ້ ຖືກເປີດຢູ່ໃນ sandboxed iframe ຂອງ Google Apps Script ຫຼືບໍ່
+    // (window.top !== window.self ພາຍໃນ Apps Script Web App). ຖ້າບໍ່ແມ່ນ (ເຊັ່ນ: ຢູ່ Firebase Hosting)
+    // ຈຶ່ງສະຫຼັບ manifest ໄປໃຊ້ manifest.json ແທ້ ແລະ ລົງທະບຽນ service-worker.js
+    // =======================================================
+    (function pwaBootstrap() {
+      const isInsideAppsScriptFrame = (function () {
+        try { return window.top !== window.self; } catch (e) { return true; }
+      })();
+
+      if (!isInsideAppsScriptFrame) {
+        const manifestLink = document.getElementById('manifest-placeholder');
+        if (manifestLink) manifestLink.setAttribute('href', 'manifest.json');
+
+        // ໃຊ້ icon ຈິງທີ່ deploy ນຳ Firebase Hosting ແທນ icon ຊົ່ວຄາວຈາກ CDN ພາຍນອກ
+        const appleTouchIcon = document.querySelector('link[rel="apple-touch-icon"]');
+        if (appleTouchIcon) appleTouchIcon.setAttribute('href', 'icons/icon-192.png');
+        const faviconIcon = document.querySelector('link[rel="icon"]');
+        if (faviconIcon) faviconIcon.setAttribute('href', 'icons/icon-192.png');
+
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('service-worker.js').then((reg) => {
+              // Auto Update: ກວດຫາເວີຊັນໃໝ່ທັນທີ ແລະ ທຸກໆ 60 ນາທີ
+              reg.update().catch(() => {});
+              setInterval(() => reg.update().catch(() => {}), 60 * 60 * 1000);
+
+              reg.addEventListener('updatefound', () => {
+                const newWorker = reg.installing;
+                if (!newWorker) return;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // ມີ Service Worker ເວີຊັນໃໝ່ພ້ອມແລ້ວ ແລະ ມີເວີຊັນເກົ່າເຮັດວຽກຢູ່ (ບໍ່ແມ່ນຕິດຕັ້ງຄັ້ງທຳອິດ)
+                    window.dispatchEvent(new CustomEvent('sw-update-available', { detail: { worker: newWorker } }));
+                  }
+                });
+              });
+            }).catch(err => {
+              console.warn('Service Worker registration failed:', err);
+            });
+
+            // ຫຼັງຈາກ Service Worker ໃໝ່ເປີດໃຊ້ງານ (ຫຼັງກົດ "ອັບເດດ") -> ໂຫຼດໜ້າໃໝ່ອັດຕະໂນມັດຄັ້ງດຽວ
+            let hasReloadedForUpdate = false;
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+              if (hasReloadedForUpdate) return;
+              hasReloadedForUpdate = true;
+              window.location.reload();
+            });
+          });
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
